@@ -46,7 +46,8 @@ This is a bare React Native project, created with [create-react-native-app](http
     * [VisionCamera](https://github.com/mrousavy/react-native-vision-camera) is used to get a Camera device and **display a Camera component**. Also, a [frame processor](https://mrousavy.github.io/react-native-vision-camera/docs/guides/frame-processors) (a function that gets called for every frame the camera "sees") gets attached, which **calls the native iOS/Android frame processor plugin**.
     * [Reanimated](https://github.com/software-mansion/react-native-reanimated) is used to smoothly animate between color changes.
 
-    Because VisionCamera also uses the Worklet API, the entire process between receiving a camera frame and actually displaying the palette's colors **does not use the React-JS Thread at all**. The frame processing runs on a separate Thread from VisionCamera, which then dispatches the animations on the Reanimated UI Thread.
+    Because VisionCamera also uses the Worklet API, the entire process between receiving a camera frame and actually displaying the palette's colors **does not use the React-JS Thread at all**.
+    The frame processing runs on a separate Thread from VisionCamera, which then dispatches the animations on the Reanimated UI Thread.
     This is why the App runs as smooth as a native iOS or Android app.
 
   * 📄 `src/useAnimatedColor.ts`: A helper function to animate color changes with `SharedValue`s.
@@ -56,7 +57,9 @@ This is a bare React Native project, created with [create-react-native-app](http
 * 📁 `ios`: Contains the source code for the iOS app.
   * 📄 `ios/PaletteFrameProcessorPlugin.m`: Declares the Swift frame processor plugin "`getColorPalette(...)`".
   * 📄 `ios/PaletteFrameProcessorPlugin.swift`: Contains the actual Swift code for the native iOS frame processor plugin "`getColorPalette(...)`".
+
   This uses the CoreImage API to convert the `CMSampleBuffer` to a `UIImage`, and then uses the [`UIImageColors`](https://github.com/jathu/UIImageColors) library to build the color palette.
+
   VisionCamera's [frame processor API](https://mrousavy.github.io/react-native-vision-camera/docs/guides/frame-processors-plugins-overview) is used to expose this function as a frame processor plugin.
   * 📄 `ios/Colorwaver-Bridging-Header.h`: A Bridging Header to import Objective-C headers into Swift.
   * 📄 `ios/Podfile`: Adds the [`UIImageColors`](https://github.com/jathu/UIImageColors) library.
@@ -73,7 +76,10 @@ This is a bare React Native project, created with [create-react-native-app](http
   * 📄 `android/app/src/main/java/com/colorwaver/MainApplication.java`: Sets up react-native-reanimated.
   * 📄 `android/app/src/main/java/com/colorwaver/MainActivity.java`: Installs the `PaletteFrameProcessorPlugin` frame processor plugin inside of the `onCreate` method.
   * 📄 `android/app/src/main/java/com/colorwaver/PaletteFrameProcessorPlugin.java`: Contains the actual Java code for the native Android frame processor plugin "`getColorPalette(...)`".
-  This uses the `YuvToRgbConverter` to convert the `ImageProxy` to a `Bitmap`, and then passes that to the [Palette API from AndroidX](https://developer.android.com/reference/androidx/palette/graphics/Palette) to build the color palette. VisionCamera's [frame processor API](https://mrousavy.github.io/react-native-vision-camera/docs/guides/frame-processors-plugins-overview) is used to expose this function as a frame processor plugin.
+
+  This uses the `YuvToRgbConverter` to convert the `ImageProxy` to a `Bitmap`, and then passes that to the [Palette API from AndroidX](https://developer.android.com/reference/androidx/palette/graphics/Palette) to build the color palette.
+
+  VisionCamera's [frame processor API](https://mrousavy.github.io/react-native-vision-camera/docs/guides/frame-processors-plugins-overview) is used to expose this function as a frame processor plugin.
 
 ---
 

@@ -14,6 +14,7 @@
 		6B79419A8D38A90A28EC6FCB /* libPods-Colorwaver-ColorwaverTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 217F752165D9DB39E4D42171 /* libPods-Colorwaver-ColorwaverTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		84529C4B6F306BEAC4C412A3 /* libPods-Colorwaver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F2C483C1AF5A46660C7C0A /* libPods-Colorwaver.a */; };
+		B869228426DA1F9100186D7D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = B869228326DA1F9100186D7D /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,8 @@
 		44AE187957472DD329CE61E0 /* Pods-Colorwaver-ColorwaverTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Colorwaver-ColorwaverTests.debug.xcconfig"; path = "Target Support Files/Pods-Colorwaver-ColorwaverTests/Pods-Colorwaver-ColorwaverTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Colorwaver/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6FA5584F8C20D133B0A1619 /* Pods-Colorwaver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Colorwaver.debug.xcconfig"; path = "Target Support Files/Pods-Colorwaver/Pods-Colorwaver.debug.xcconfig"; sourceTree = "<group>"; };
+		B869228226DA1F9100186D7D /* Colorwaver-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Colorwaver-Bridging-Header.h"; sourceTree = "<group>"; };
+		B869228326DA1F9100186D7D /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		DDF131CE188414F6F7234528 /* Pods-Colorwaver-ColorwaverTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Colorwaver-ColorwaverTests.release.xcconfig"; path = "Target Support Files/Pods-Colorwaver-ColorwaverTests/Pods-Colorwaver-ColorwaverTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -103,6 +106,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				B869228326DA1F9100186D7D /* File.swift */,
+				B869228226DA1F9100186D7D /* Colorwaver-Bridging-Header.h */,
 			);
 			name = Colorwaver;
 			sourceTree = "<group>";
@@ -205,7 +210,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1250;
 					};
 				};
 			};
@@ -375,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				B869228426DA1F9100186D7D /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +400,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 44AE187957472DD329CE61E0 /* Pods-Colorwaver-ColorwaverTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -421,6 +428,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DDF131CE188414F6F7234528 /* Pods-Colorwaver-ColorwaverTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = ColorwaverTests/Info.plist;
@@ -462,8 +470,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mrousavy.Colorwaver;
 				PRODUCT_NAME = Colorwaver;
+				SWIFT_OBJC_BRIDGING_HEADER = "Colorwaver-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.2;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -488,7 +497,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mrousavy.Colorwaver;
 				PRODUCT_NAME = Colorwaver;
-				SWIFT_VERSION = 5.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "Colorwaver-Bridging-Header.h";
+				SWIFT_VERSION = 5.2;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -549,7 +559,6 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -607,7 +616,6 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;

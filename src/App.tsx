@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import {
   Camera,
   CameraRuntimeError,
@@ -85,12 +85,20 @@ export function App() {
         onError={onCameraError}
         onInitialized={onCameraInitialized}
         fps={5}
-        frameProcessorFps={1}
+        frameProcessorFps={5}
       />
-      <Reanimated.View style={[styles.tileTopLeft, tileTopLeftStyle]} />
-      <Reanimated.View style={[styles.tileTopRight, tileTopRightStyle]} />
-      <Reanimated.View style={[styles.tileBottomLeft, tileBottomLeftStyle]} />
-      <Reanimated.View style={[styles.tileBottomRight, tileBottomRightStyle]} />
+      <Reanimated.View style={[styles.tileTopLeft, tileTopLeftStyle]}>
+        <Text style={styles.text}>Primary</Text>
+      </Reanimated.View>
+      <Reanimated.View style={[styles.tileTopRight, tileTopRightStyle]}>
+        <Text style={styles.text}>Secondary</Text>
+      </Reanimated.View>
+      <Reanimated.View style={[styles.tileBottomLeft, tileBottomLeftStyle]}>
+        <Text style={styles.text}>Background</Text>
+      </Reanimated.View>
+      <Reanimated.View style={[styles.tileBottomRight, tileBottomRightStyle]}>
+        <Text style={styles.text}>Detail</Text>
+      </Reanimated.View>
     </View>
   );
 }
@@ -112,6 +120,8 @@ const styles = StyleSheet.create({
     left: 0,
     width: SCREEN_WIDTH / 2,
     height: SCREEN_HEIGHT / 2,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   tileTopRight: {
     position: 'absolute',
@@ -119,6 +129,8 @@ const styles = StyleSheet.create({
     right: 0,
     width: SCREEN_WIDTH / 2,
     height: SCREEN_HEIGHT / 2,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   tileBottomLeft: {
     position: 'absolute',
@@ -126,6 +138,8 @@ const styles = StyleSheet.create({
     left: 0,
     width: SCREEN_WIDTH / 2,
     height: SCREEN_HEIGHT / 2,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   tileBottomRight: {
     position: 'absolute',
@@ -133,5 +147,18 @@ const styles = StyleSheet.create({
     right: 0,
     width: SCREEN_WIDTH / 2,
     height: SCREEN_HEIGHT / 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textShadowColor: 'black',
+    textShadowOffset: {
+      height: 0,
+      width: 0,
+    },
+    textShadowRadius: 2,
+    color: 'white',
   },
 });

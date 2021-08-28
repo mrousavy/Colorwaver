@@ -1,15 +1,13 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useEffect, useState} from 'react';
-import {Alert} from 'react-native';
+import {Alert, StyleSheet, Text, View} from 'react-native';
 import {Camera} from 'react-native-vision-camera';
-import {App} from './App';
-import {Splash} from './Splash';
+import {Routes} from './Routes';
 
-const Stack = createNativeStackNavigator();
+type Props = NativeStackScreenProps<Routes, 'App'>;
 
-export function Router() {
-  console.log('re-rendering Router.');
+export function App(props: Props) {
+  console.log('re-rendering App.');
   const [hasPermission, setHasPermission] = useState(false);
 
   useEffect(() => {
@@ -28,14 +26,15 @@ export function Router() {
   }, []);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}>
-        <Stack.Screen name="Splash" component={Splash} />
-        <Stack.Screen name="App" component={App} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View style={styles.container}>
+      <Text>HEllo!</Text>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'red',
+  },
+});

@@ -22,10 +22,10 @@ public class PaletteFrameProcessorPlugin: NSObject, FrameProcessorPluginBase {
     let colors = image.getColors()!
     
     return [
-      "primary": colors.primary,
-      "secondary": colors.secondary,
-      "background": colors.background,
-      "detail": colors.detail
+      "primary": colors.primary.hexString,
+      "secondary": colors.secondary.hexString,
+      "background": colors.background.hexString,
+      "detail": colors.detail.hexString
     ]
   }
 }

@@ -17,6 +17,7 @@
 		B869228426DA1F9100186D7D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = B869228326DA1F9100186D7D /* File.swift */; };
 		B869228626DA27AC00186D7D /* PaletteFrameProcessorPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = B869228526DA27AC00186D7D /* PaletteFrameProcessorPlugin.m */; };
 		B869228826DA29AA00186D7D /* PaletteFrameProcessorPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B869228726DA29AA00186D7D /* PaletteFrameProcessorPlugin.swift */; };
+		B89B4A6D26DA48ED0063A3DB /* UIColor+hexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89B4A6C26DA48ED0063A3DB /* UIColor+hexString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		B869228326DA1F9100186D7D /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		B869228526DA27AC00186D7D /* PaletteFrameProcessorPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaletteFrameProcessorPlugin.m; sourceTree = "<group>"; };
 		B869228726DA29AA00186D7D /* PaletteFrameProcessorPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteFrameProcessorPlugin.swift; sourceTree = "<group>"; };
+		B89B4A6C26DA48ED0063A3DB /* UIColor+hexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hexString.swift"; sourceTree = "<group>"; };
 		DDF131CE188414F6F7234528 /* Pods-Colorwaver-ColorwaverTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Colorwaver-ColorwaverTests.release.xcconfig"; path = "Target Support Files/Pods-Colorwaver-ColorwaverTests/Pods-Colorwaver-ColorwaverTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -114,6 +116,7 @@
 				B869228226DA1F9100186D7D /* Colorwaver-Bridging-Header.h */,
 				B869228526DA27AC00186D7D /* PaletteFrameProcessorPlugin.m */,
 				B869228726DA29AA00186D7D /* PaletteFrameProcessorPlugin.swift */,
+				B89B4A6C26DA48ED0063A3DB /* UIColor+hexString.swift */,
 			);
 			name = Colorwaver;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B89B4A6D26DA48ED0063A3DB /* UIColor+hexString.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				B869228826DA29AA00186D7D /* PaletteFrameProcessorPlugin.swift in Sources */,
 				B869228626DA27AC00186D7D /* PaletteFrameProcessorPlugin.m in Sources */,

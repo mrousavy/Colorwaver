@@ -63,9 +63,9 @@ This is a bare React Native project, created with [create-react-native-app](http
   * 📄 `ios/PaletteFrameProcessorPlugin.m`: Declares the Swift frame processor plugin "`getColorPalette(...)`".
   * 📄 `ios/PaletteFrameProcessorPlugin.swift`: Contains the actual Swift code for the native iOS frame processor plugin "`getColorPalette(...)`".
 
-  This uses the CoreImage API to convert the `CMSampleBuffer` to a `UIImage`, and then uses the [`UIImageColors`](https://github.com/jathu/UIImageColors) library to build the color palette.
+    This uses the CoreImage API to convert the `CMSampleBuffer` to a `UIImage`, and then uses the [`UIImageColors`](https://github.com/jathu/UIImageColors) library to build the color palette.
 
-  VisionCamera's [frame processor API](https://mrousavy.github.io/react-native-vision-camera/docs/guides/frame-processors-plugins-overview) is used to expose this function as a frame processor plugin.
+    VisionCamera's [frame processor API](https://mrousavy.github.io/react-native-vision-camera/docs/guides/frame-processors-plugins-overview) is used to expose this function as a frame processor plugin.
   * 📄 `ios/Colorwaver-Bridging-Header.h`: A Bridging Header to import Objective-C headers into Swift.
   * 📄 `ios/Podfile`: Adds the [`UIImageColors`](https://github.com/jathu/UIImageColors) library.
   * 📄 `ios/UIColor+hexString.swift`: An extension for `UIColor` to convert `UIColor` instances to strings. This is required because React Native handles colors as strings.
@@ -82,9 +82,9 @@ This is a bare React Native project, created with [create-react-native-app](http
   * 📄 `android/app/src/main/java/com/colorwaver/MainActivity.java`: Installs the `PaletteFrameProcessorPlugin` frame processor plugin inside of the `onCreate` method.
   * 📄 `android/app/src/main/java/com/colorwaver/PaletteFrameProcessorPlugin.java`: Contains the actual Java code for the native Android frame processor plugin "`getColorPalette(...)`".
 
-  This uses the `YuvToRgbConverter` to convert the `ImageProxy` to a `Bitmap`, and then passes that to the [Palette API from AndroidX](https://developer.android.com/reference/androidx/palette/graphics/Palette) to build the color palette.
+    This uses the `YuvToRgbConverter` to convert the `ImageProxy` to a `Bitmap`, and then passes that to the [Palette API from AndroidX](https://developer.android.com/reference/androidx/palette/graphics/Palette) to build the color palette.
 
-  VisionCamera's [frame processor API](https://mrousavy.github.io/react-native-vision-camera/docs/guides/frame-processors-plugins-overview) is used to expose this function as a frame processor plugin.
+    VisionCamera's [frame processor API](https://mrousavy.github.io/react-native-vision-camera/docs/guides/frame-processors-plugins-overview) is used to expose this function as a frame processor plugin.
 
 ---
 

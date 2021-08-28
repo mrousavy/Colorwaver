@@ -16,7 +16,5 @@
     "node_modules",
     "babel.config.js",
     "metro.config.js",
-    ".prettierrc.js",
-    ".eslintrc.js",
   ]
 }

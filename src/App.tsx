@@ -1,15 +1,30 @@
 import React, {useCallback} from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  TextInput,
+  TextInputProps,
+  View,
+} from 'react-native';
 import {
   Camera,
   CameraRuntimeError,
   useCameraDevices,
   useFrameProcessor,
 } from 'react-native-vision-camera';
-import Reanimated, {useAnimatedStyle} from 'react-native-reanimated';
+import Reanimated, {
+  useAnimatedProps,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
 import {getColorPalette} from './getColorPalette';
 import {useSharedValue} from 'react-native-reanimated';
 import {useAnimatedColor} from './useAnimatedColor';
+
+Reanimated.addWhitelistedNativeProps({
+  text: true,
+});
+const ReanimatedTextInput = Reanimated.createAnimatedComponent(TextInput);
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -69,6 +84,23 @@ export function App() {
     [],
   );
 
+  // @ts-expect-error `text` is a hidden native prop
+  const primaryTextProps = useAnimatedProps<TextInputProps>(() => ({
+    text: primaryColor.value,
+  }));
+  // @ts-expect-error `text` is a hidden native prop
+  const secondaryTextProps = useAnimatedProps<TextInputProps>(() => ({
+    text: secondaryColor.value,
+  }));
+  // @ts-expect-error `text` is a hidden native prop
+  const backgroundTextProps = useAnimatedProps<TextInputProps>(() => ({
+    text: backgroundColor.value,
+  }));
+  // @ts-expect-error `text` is a hidden native prop
+  const detailTextProps = useAnimatedProps<TextInputProps>(() => ({
+    text: detailColor.value,
+  }));
+
   if (device == null) {
     return <View style={styles.blackscreen} />;
   }
@@ -88,15 +120,31 @@ export function App() {
       />
       <Reanimated.View style={[styles.tileTopLeft, tileTopLeftStyle]}>
         <Text style={styles.text}>Primary</Text>
+        <ReanimatedTextInput
+          style={styles.smallerText}
+          animatedProps={primaryTextProps}
+        />
       </Reanimated.View>
       <Reanimated.View style={[styles.tileTopRight, tileTopRightStyle]}>
         <Text style={styles.text}>Secondary</Text>
+        <ReanimatedTextInput
+          style={styles.smallerText}
+          animatedProps={secondaryTextProps}
+        />
       </Reanimated.View>
       <Reanimated.View style={[styles.tileBottomLeft, tileBottomLeftStyle]}>
         <Text style={styles.text}>Background</Text>
+        <ReanimatedTextInput
+          style={styles.smallerText}
+          animatedProps={backgroundTextProps}
+        />
       </Reanimated.View>
       <Reanimated.View style={[styles.tileBottomRight, tileBottomRightStyle]}>
         <Text style={styles.text}>Detail</Text>
+        <ReanimatedTextInput
+          style={styles.smallerText}
+          animatedProps={detailTextProps}
+        />
       </Reanimated.View>
     </View>
   );
@@ -115,28 +163,28 @@ const styles = StyleSheet.create({
   },
   tileTopLeft: {
     position: 'absolute',
-    top: 0,
+    bottom: 0,
     left: 0,
-    width: SCREEN_WIDTH / 2,
-    height: SCREEN_HEIGHT / 2,
+    width: SCREEN_WIDTH / 4,
+    height: SCREEN_HEIGHT / 5,
     justifyContent: 'center',
     alignItems: 'center',
   },
   tileTopRight: {
     position: 'absolute',
-    top: 0,
-    right: 0,
-    width: SCREEN_WIDTH / 2,
-    height: SCREEN_HEIGHT / 2,
+    bottom: 0,
+    left: SCREEN_WIDTH / 4,
+    width: SCREEN_WIDTH / 4,
+    height: SCREEN_HEIGHT / 5,
     justifyContent: 'center',
     alignItems: 'center',
   },
   tileBottomLeft: {
     position: 'absolute',
     bottom: 0,
-    left: 0,
-    width: SCREEN_WIDTH / 2,
-    height: SCREEN_HEIGHT / 2,
+    right: SCREEN_WIDTH / 4,
+    width: SCREEN_WIDTH / 4,
+    height: SCREEN_HEIGHT / 5,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -144,13 +192,24 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     right: 0,
-    width: SCREEN_WIDTH / 2,
-    height: SCREEN_HEIGHT / 2,
+    width: SCREEN_WIDTH / 4,
+    height: SCREEN_HEIGHT / 5,
     justifyContent: 'center',
     alignItems: 'center',
   },
   text: {
-    fontSize: 20,
+    fontSize: 14,
+    fontWeight: 'bold',
+    textShadowColor: 'black',
+    textShadowOffset: {
+      height: 0,
+      width: 0,
+    },
+    textShadowRadius: 2,
+    color: 'white',
+  },
+  smallerText: {
+    fontSize: 12,
     fontWeight: 'bold',
     textShadowColor: 'black',
     textShadowOffset: {

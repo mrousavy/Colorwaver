@@ -2,7 +2,9 @@
   <h1><img align="center" src="./ios/Colorwaver/Images.xcassets/AppIcon.appiconset/50.png" /> Colorwaver</h1>
 </div>
 
-An app to detect **colorwaves** (swatches/palettes) in the real world - powered by [VisionCamera](https://github.com/mrousavy/react-native-vision-camera)
+An app to detect **colorwaves** (swatches/palettes) in the real world - powered by [VisionCamera](https://github.com/mrousavy/react-native-vision-camera) and [Reanimated](https://github.com/software-mansion/react-native-reanimated).
+
+I wrote this app in less than a day, a speed simply not matched by native app development. Because it's written in [React Native](https://reactnative.dev) (TypeScript/JavaScript), it runs both on iOS and Android, but performance critical parts (e.g. the image processing algorithm or the animations) are backed by native Objective-C/Swift/Java code.
 
 See [this Tweet](https://twitter.com/mrousavy/status/1431619738673860611) for more information.
 

@@ -304,6 +304,7 @@ PODS:
   - RNScreens (3.6.0):
     - React-Core
     - React-RCTImage
+  - UIImageColors (2.1.0)
   - VisionCamera (2.6.1):
     - React
     - React-callinvoker
@@ -343,6 +344,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - UIImageColors
   - VisionCamera (from `../node_modules/react-native-vision-camera`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -350,6 +352,7 @@ SPEC REPOS:
   trunk:
     - boost-for-react-native
     - fmt
+    - UIImageColors
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -450,9 +453,10 @@ SPEC CHECKSUMS:
   ReactCommon: eafed38eec7b591c31751bfa7494801618460459
   RNReanimated: 836ef66d2a5cb96b957eceb4b8462fdf8c5e9f19
   RNScreens: eb0dfb2d6b21d2d7f980ad46b14eb306d2f1062e
+  UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
   VisionCamera: dc481620431e31c1d6bbbc438d8a1d9c56f3d304
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
 
-PODFILE CHECKSUM: 9b8d61c786adee1371feabb42973049a66ce1089
+PODFILE CHECKSUM: 25877351c442b710c078a34a21450de8da6fdd2a
 
 COCOAPODS: 1.10.2

@@ -15,6 +15,8 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		84529C4B6F306BEAC4C412A3 /* libPods-Colorwaver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F2C483C1AF5A46660C7C0A /* libPods-Colorwaver.a */; };
 		B869228426DA1F9100186D7D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = B869228326DA1F9100186D7D /* File.swift */; };
+		B869228626DA27AC00186D7D /* PaletteFrameProcessorPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = B869228526DA27AC00186D7D /* PaletteFrameProcessorPlugin.m */; };
+		B869228826DA29AA00186D7D /* PaletteFrameProcessorPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B869228726DA29AA00186D7D /* PaletteFrameProcessorPlugin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		B6FA5584F8C20D133B0A1619 /* Pods-Colorwaver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Colorwaver.debug.xcconfig"; path = "Target Support Files/Pods-Colorwaver/Pods-Colorwaver.debug.xcconfig"; sourceTree = "<group>"; };
 		B869228226DA1F9100186D7D /* Colorwaver-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Colorwaver-Bridging-Header.h"; sourceTree = "<group>"; };
 		B869228326DA1F9100186D7D /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		B869228526DA27AC00186D7D /* PaletteFrameProcessorPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaletteFrameProcessorPlugin.m; sourceTree = "<group>"; };
+		B869228726DA29AA00186D7D /* PaletteFrameProcessorPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteFrameProcessorPlugin.swift; sourceTree = "<group>"; };
 		DDF131CE188414F6F7234528 /* Pods-Colorwaver-ColorwaverTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Colorwaver-ColorwaverTests.release.xcconfig"; path = "Target Support Files/Pods-Colorwaver-ColorwaverTests/Pods-Colorwaver-ColorwaverTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -108,6 +112,8 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 				B869228326DA1F9100186D7D /* File.swift */,
 				B869228226DA1F9100186D7D /* Colorwaver-Bridging-Header.h */,
+				B869228526DA27AC00186D7D /* PaletteFrameProcessorPlugin.m */,
+				B869228726DA29AA00186D7D /* PaletteFrameProcessorPlugin.swift */,
 			);
 			name = Colorwaver;
 			sourceTree = "<group>";
@@ -380,6 +386,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				B869228826DA29AA00186D7D /* PaletteFrameProcessorPlugin.swift in Sources */,
+				B869228626DA27AC00186D7D /* PaletteFrameProcessorPlugin.m in Sources */,
 				B869228426DA1F9100186D7D /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);

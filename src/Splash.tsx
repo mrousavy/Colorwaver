@@ -27,22 +27,8 @@ export function Splash({navigation}: Props) {
   }, []);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const result = await Camera.getCameraPermissionStatus();
-        setHasPermission(result === 'authorized');
-      } catch (e) {
-        Alert.alert(
-          'Failed to get permission!',
-          'Failed to get Camera permission. Please verify that you have granted Camera Permission in your Settings app.',
-        );
-      }
-    })();
-  }, []);
-
-  useEffect(() => {
     if (hasPermission) {
-      navigation.replace('App');
+      navigation.navigate('App');
     }
   }, [hasPermission, navigation]);
 

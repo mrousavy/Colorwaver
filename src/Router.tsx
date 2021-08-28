@@ -1,41 +1,48 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useEffect, useState} from 'react';
-import {Alert} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {Camera} from 'react-native-vision-camera';
 import {App} from './App';
+import {Routes} from './Routes';
 import {Splash} from './Splash';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<Routes>();
 
 export function Router() {
   console.log('re-rendering Router.');
-  const [hasPermission, setHasPermission] = useState(false);
+  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
 
   useEffect(() => {
-    const requestPermission = async () => {
+    (async () => {
       try {
         const result = await Camera.getCameraPermissionStatus();
         setHasPermission(result === 'authorized');
       } catch (e) {
-        Alert.alert(
-          'Failed to request permissions!',
-          'Failed to request Camera permission. Please verify that you have granted Camera Permission in your Settings app.',
-        );
+        setHasPermission(false);
       }
-    };
-    requestPermission();
+    })();
   }, []);
+
+  if (hasPermission == null) {
+    return <View style={styles.blackscreen} />;
+  }
 
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-        }}>
+          animation: 'fade',
+        }}
+        initialRouteName={hasPermission ? 'App' : 'Splash'}>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="App" component={App} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  blackscreen: {flex: 1, backgroundColor: 'black'},
+});

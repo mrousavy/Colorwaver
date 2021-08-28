@@ -173,10 +173,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   camera: {
-    flex: 1, // <-- TODO: Make 1x1
+    flex: 1,
   },
   palettes: {
-    position: 'absolute',
     left: 0,
     bottom: 0,
     right: 0,

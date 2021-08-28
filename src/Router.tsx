@@ -44,5 +44,8 @@ export function Router() {
 }
 
 const styles = StyleSheet.create({
-  blackscreen: {flex: 1, backgroundColor: 'black'},
+  blackscreen: {
+    flex: 1,
+    backgroundColor: 'black',
+  },
 });

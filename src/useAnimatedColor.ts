@@ -26,7 +26,6 @@ export function useAnimatedColor(
         duration: 150,
         easing: Easing.linear,
       });
-      console.log(`Animating from ${prevColor} -> ${newColor}`);
     },
   );
 

@@ -59,7 +59,7 @@ This is a bare React Native project, created with [create-react-native-app](http
 
 ---
 
-* 📁 `ios`: Contains the source code for the iOS app.
+* 📁 `ios`: Contains the basic skeleton for a React Native iOS app, plus the native `getColorPalette(...)` Frame Processor Plugin.
   * 📄 `ios/PaletteFrameProcessorPlugin.m`: Declares the Swift frame processor plugin "`getColorPalette(...)`".
   * 📄 `ios/PaletteFrameProcessorPlugin.swift`: Contains the actual Swift code for the native iOS frame processor plugin "`getColorPalette(...)`".
 
@@ -72,7 +72,7 @@ This is a bare React Native project, created with [create-react-native-app](http
 
 ---
 
-* 📁 `android`: Contains the source code for the android app.
+* 📁 `android`: Contains the basic skeleton for a React Native Android app, plus the native `getColorPalette(...)` Frame Processor Plugin.
   * 📄 `android/app/build.gradle`: The gradle build file for the Android project. The following third-party dependencies are installed:
     * `androidx.camera`: `camera-core`
     * `androidx.palette`: `palette`

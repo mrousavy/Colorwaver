@@ -1,6 +1,7 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import {
   Dimensions,
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
@@ -31,6 +32,7 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
 const DEFAULT_COLOR = '#000000';
 
 export function App() {
+  const [isActive, setIsActive] = useState(true);
   const devices = useCameraDevices('wide-angle-camera');
   const device = devices.back;
   const primaryColor = useSharedValue(DEFAULT_COLOR);
@@ -101,6 +103,13 @@ export function App() {
     text: detailColor.value,
   }));
 
+  const onPressIn = useCallback(() => {
+    setIsActive(false);
+  }, []);
+  const onPressOut = useCallback(() => {
+    setIsActive(true);
+  }, []);
+
   if (device == null) {
     return <View style={styles.blackscreen} />;
   }
@@ -108,45 +117,51 @@ export function App() {
   console.log(`Camera Device: ${device.name}`);
 
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}>
       <Camera
         device={device}
-        isActive={true}
+        isActive={isActive}
         frameProcessor={frameProcessor}
         style={styles.camera}
         onError={onCameraError}
         onInitialized={onCameraInitialized}
         frameProcessorFps={5}
       />
-      <Reanimated.View style={[styles.tileTopLeft, tileTopLeftStyle]}>
-        <Text style={styles.text}>Primary</Text>
-        <ReanimatedTextInput
-          style={styles.smallerText}
-          animatedProps={primaryTextProps}
-        />
-      </Reanimated.View>
-      <Reanimated.View style={[styles.tileTopRight, tileTopRightStyle]}>
-        <Text style={styles.text}>Secondary</Text>
-        <ReanimatedTextInput
-          style={styles.smallerText}
-          animatedProps={secondaryTextProps}
-        />
-      </Reanimated.View>
-      <Reanimated.View style={[styles.tileBottomLeft, tileBottomLeftStyle]}>
-        <Text style={styles.text}>Background</Text>
-        <ReanimatedTextInput
-          style={styles.smallerText}
-          animatedProps={backgroundTextProps}
-        />
-      </Reanimated.View>
-      <Reanimated.View style={[styles.tileBottomRight, tileBottomRightStyle]}>
-        <Text style={styles.text}>Detail</Text>
-        <ReanimatedTextInput
-          style={styles.smallerText}
-          animatedProps={detailTextProps}
-        />
-      </Reanimated.View>
-    </View>
+
+      <View style={styles.palettes}>
+        <Reanimated.View style={[styles.tileTopLeft, tileTopLeftStyle]}>
+          <Text style={styles.text}>Primary</Text>
+          <ReanimatedTextInput
+            style={styles.smallerText}
+            animatedProps={primaryTextProps}
+          />
+        </Reanimated.View>
+        <Reanimated.View style={[styles.tileTopRight, tileTopRightStyle]}>
+          <Text style={styles.text}>Secondary</Text>
+          <ReanimatedTextInput
+            style={styles.smallerText}
+            animatedProps={secondaryTextProps}
+          />
+        </Reanimated.View>
+        <Reanimated.View style={[styles.tileBottomLeft, tileBottomLeftStyle]}>
+          <Text style={styles.text}>Background</Text>
+          <ReanimatedTextInput
+            style={styles.smallerText}
+            animatedProps={backgroundTextProps}
+          />
+        </Reanimated.View>
+        <Reanimated.View style={[styles.tileBottomRight, tileBottomRightStyle]}>
+          <Text style={styles.text}>Detail</Text>
+          <ReanimatedTextInput
+            style={styles.smallerText}
+            animatedProps={detailTextProps}
+          />
+        </Reanimated.View>
+      </View>
+    </Pressable>
   );
 }
 
@@ -161,39 +176,32 @@ const styles = StyleSheet.create({
   camera: {
     flex: 1, // <-- TODO: Make 1x1
   },
-  tileTopLeft: {
+  palettes: {
     position: 'absolute',
-    bottom: 0,
     left: 0,
-    width: SCREEN_WIDTH / 4,
+    bottom: 0,
+    right: 0,
     height: SCREEN_HEIGHT / 5,
+    flexDirection: 'row',
+    backgroundColor: 'black',
+  },
+  tileTopLeft: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   tileTopRight: {
-    position: 'absolute',
-    bottom: 0,
-    left: SCREEN_WIDTH / 4,
-    width: SCREEN_WIDTH / 4,
-    height: SCREEN_HEIGHT / 5,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   tileBottomLeft: {
-    position: 'absolute',
-    bottom: 0,
-    right: SCREEN_WIDTH / 4,
-    width: SCREEN_WIDTH / 4,
-    height: SCREEN_HEIGHT / 5,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   tileBottomRight: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-    width: SCREEN_WIDTH / 4,
-    height: SCREEN_HEIGHT / 5,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },

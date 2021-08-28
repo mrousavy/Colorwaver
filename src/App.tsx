@@ -84,7 +84,6 @@ export function App() {
         style={styles.camera}
         onError={onCameraError}
         onInitialized={onCameraInitialized}
-        fps={5}
         frameProcessorFps={5}
       />
       <Reanimated.View style={[styles.tileTopLeft, tileTopLeftStyle]}>

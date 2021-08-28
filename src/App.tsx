@@ -4,7 +4,10 @@ import {
   Camera,
   CameraRuntimeError,
   useCameraDevices,
+  useFrameProcessor,
 } from 'react-native-vision-camera';
+import 'react-native-reanimated';
+import {getColorPalette} from './getColorPalette';
 
 export function App() {
   const devices = useCameraDevices('wide-angle-camera');
@@ -15,6 +18,13 @@ export function App() {
   }, []);
   const onCameraInitialized = useCallback(() => {
     console.log('Camera initialized!');
+  }, []);
+
+  const frameProcessor = useFrameProcessor(frame => {
+    'worklet';
+    console.log('hello!');
+    const colors = getColorPalette(frame);
+    console.log('colors:', colors);
   }, []);
 
   if (device == null) {
@@ -28,6 +38,7 @@ export function App() {
       <Camera
         device={device}
         isActive={true}
+        frameProcessor={frameProcessor}
         style={styles.camera}
         onError={onCameraError}
         onInitialized={onCameraInitialized}

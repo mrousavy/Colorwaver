@@ -22,9 +22,8 @@ export function App() {
 
   const frameProcessor = useFrameProcessor(frame => {
     'worklet';
-    console.log('hello!');
     const colors = getColorPalette(frame);
-    console.log('colors:', colors);
+    console.log('Colors:', colors);
   }, []);
 
   if (device == null) {

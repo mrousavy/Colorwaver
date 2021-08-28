@@ -10,7 +10,6 @@ import {Splash} from './Splash';
 const Stack = createNativeStackNavigator<Routes>();
 
 export function Router() {
-  console.log('re-rendering Router.');
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
 
   useEffect(() => {

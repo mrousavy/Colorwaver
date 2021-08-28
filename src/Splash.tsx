@@ -10,7 +10,6 @@ const IMAGE = require('./assets/11.png');
 type Props = NativeStackScreenProps<Routes, 'Splash'>;
 
 export function Splash({navigation}: Props) {
-  console.log('re-rendering Splash.');
   const [hasPermission, setHasPermission] = useState(false);
 
   const requestPermission = useCallback(async () => {

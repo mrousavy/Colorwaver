@@ -5,7 +5,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {Camera} from 'react-native-vision-camera';
 import {Routes} from './Routes';
 
-const IMAGE = require('./assets/11.png');
+const IMAGE = require('./assets/icon.png');
 
 type Props = NativeStackScreenProps<Routes, 'Splash'>;
 
@@ -61,9 +61,11 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     position: 'absolute',
+    width: 256,
+    height: 256,
     opacity: 0.4,
     bottom: 0,
-    left: 0,
+    left: -70,
   },
   header: {
     fontSize: 38,

@@ -8,11 +8,14 @@ See [this Tweet](https://twitter.com/mrousavy/status/1431619738673860611) for mo
 
 <table>
   <tr>
-    <td>
+    <td width="33%">
       <img src="./img/demo_1.png" />
     </td>
-    <td>
+    <td width="33%">
       <img src="./img/demo_2.png" />
+    </td>
+    <td width="33%">
+      <img src="./img/demo.gif" />
     </td>
   </tr>
 </table>

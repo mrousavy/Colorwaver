@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>Colorwaver</h1>
+  <h1><img align="center" src="./ios/Colorwaver/Images.xcassets/AppIcon.appiconset/50.png" /> Colorwaver</h1>
 </div>
 
 An app to detect **colorwaves** (swatches/palettes) in the real world - powered by [VisionCamera](https://github.com/mrousavy/react-native-vision-camera)

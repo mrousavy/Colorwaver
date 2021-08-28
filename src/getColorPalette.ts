@@ -1,6 +1,6 @@
 import {Frame} from 'react-native-vision-camera';
 
-interface Palette {
+export interface Palette {
   primary: string;
   secondary: string;
   background: string;

@@ -4,6 +4,8 @@
 
 An app to detect **colorwaves** (swatches/palettes) in the real world - powered by [VisionCamera](https://github.com/mrousavy/react-native-vision-camera)
 
+See [this Tweet](https://twitter.com/mrousavy/status/1431619738673860611) for more information.
+
 <table>
   <tr>
     <td>

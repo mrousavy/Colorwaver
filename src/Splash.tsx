@@ -16,7 +16,11 @@ export function Splash({navigation}: Props) {
   const requestPermission = useCallback(async () => {
     try {
       const result = await Camera.requestCameraPermission();
-      setHasPermission(result === 'authorized');
+      if (result === 'authorized') {
+        setHasPermission(true);
+      } else {
+        await Linking.openSettings();
+      }
     } catch (e) {
       Alert.alert(
         'Failed to request permission!',

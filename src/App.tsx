@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   Dimensions,
   Pressable,
@@ -27,7 +27,6 @@ Reanimated.addWhitelistedNativeProps({
 });
 const ReanimatedTextInput = Reanimated.createAnimatedComponent(TextInput);
 
-const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const DEFAULT_COLOR = '#000000';
 

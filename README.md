@@ -15,6 +15,22 @@ An app to detect **colorwaves** (swatches/palettes) in the real world - powered 
   </tr>
 </table>
 
+## Try it!
+
+Download the repository and run the following commands to try **Colorwaver** for yourself:
+
+### iOS
+
+```sh
+yarn try-ios
+```
+
+### Android
+
+```sh
+yarn try-android
+```
+
 ## Project structure
 
 This is a bare React Native project, created with [create-react-native-app](https://github.com/expo/create-react-native-app).

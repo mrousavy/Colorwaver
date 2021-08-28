@@ -1,6 +1,9 @@
 package com.colorwaver;
 
 import com.facebook.react.ReactActivity;
+import com.mrousavy.camera.frameprocessor.FrameProcessorPlugin;
+import com.mrousavy.camera.frameprocessor.FrameProcessorRuntimeManager;
+
 import android.os.Bundle;
 
 public class MainActivity extends ReactActivity {
@@ -17,5 +20,6 @@ public class MainActivity extends ReactActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(null);
+    FrameProcessorPlugin.register(new PaletteFrameProcessorPlugin(getApplicationContext()));
   }
 }

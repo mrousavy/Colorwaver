@@ -16,6 +16,8 @@
 
 package com.colorwaver.utils
 
+// SOURCE: https://github.com/android/camera-samples/tree/master/Camera2Basic/utils/src/main/java/com/example/android/camera/utils
+
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.ImageFormat

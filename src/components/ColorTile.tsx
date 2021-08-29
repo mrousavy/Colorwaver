@@ -30,7 +30,7 @@ const ColorTile = ({name, color}: ColorTileProps) => {
       <Text style={styles.text}>{name}</Text>
       <AnimateableText
         animatedProps={animatedProps}
-        style={styles.smallerText}
+        style={[styles.text, styles.smallerText]}
       />
     </Reanimated.View>
   );
@@ -55,14 +55,6 @@ const styles = StyleSheet.create({
   },
   smallerText: {
     fontSize: 12,
-    fontWeight: 'bold',
-    textShadowColor: 'black',
-    textShadowOffset: {
-      height: 0,
-      width: 0,
-    },
-    textShadowRadius: 2,
-    color: 'white',
   },
 });
 

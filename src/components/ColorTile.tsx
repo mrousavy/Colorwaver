@@ -29,11 +29,9 @@ const ColorTile = ({name, color}: ColorTileProps) => {
     <Reanimated.View style={[styles.tile, animatedStyles]}>
       <Text style={styles.text}>{name}</Text>
       <AnimateableText
-        // @ts-ignore
         animatedProps={animatedProps}
         style={styles.smallerText}
       />
-      {/*<Text style={styles.smallerText}>{useDerivedValue(() => animatedStyles)}</Text>*/}
     </Reanimated.View>
   );
 };

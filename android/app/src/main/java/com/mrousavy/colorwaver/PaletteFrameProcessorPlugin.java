@@ -18,24 +18,24 @@ public class PaletteFrameProcessorPlugin extends FrameProcessorPlugin {
     @SuppressWarnings("FieldCanBeLocal")
     private static final int DEFAULT_COLOR = Color.BLACK;
 
-    private int getBitmapQualityArea(Bitmap bitmap, int qualityEnum) {
+    private int getBitmapQualityArea(Bitmap bitmap, String qualityString) {
         int higher = Math.max(bitmap.getWidth(), bitmap.getHeight());
         int lower = Math.min(bitmap.getWidth(), bitmap.getHeight());
 
-        switch (qualityEnum) {
-            case 0: {
+        switch (qualityString) {
+            case "lowest": {
                 int maxWidth = 50;
                 return (lower / higher * maxWidth) * maxWidth;
             }
-            case 1: {
+            case "low": {
                 int maxWidth = 100;
                 return (lower / higher * maxWidth) * maxWidth;
             }
-            case 2: {
+            case "high": {
                 int maxWidth = 250;
                 return (lower / higher * maxWidth) * maxWidth;
             }
-            case 3:
+            case "highest":
             default: {
                 // full area
                 return bitmap.getHeight() * bitmap.getWidth();
@@ -58,10 +58,9 @@ public class PaletteFrameProcessorPlugin extends FrameProcessorPlugin {
 
         Palette.Builder builder = new Palette.Builder(bitmap);
 
-        if (params.length > 0 && params[0] instanceof Integer) {
-            int qualityInt = (Integer) params[0];
-            int area = getBitmapQualityArea(bitmap, qualityInt);
-            builder = builder.resizeBitmapArea(area);
+        if (params.length > 0 && params[0] instanceof String) {
+            int area = getBitmapQualityArea(bitmap, (String) params[0]);
+            builder.resizeBitmapArea(area);
         }
 
         Palette palette = builder.generate();

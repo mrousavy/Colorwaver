@@ -12,15 +12,15 @@ import UIImageColors
 public class PaletteFrameProcessorPlugin: NSObject, FrameProcessorPluginBase {
   private static let context = CIContext(options: nil)
   
-  private static func convertQuality(quality: Int) -> UIImageColorsQuality {
+  private static func convertQuality(quality: String) -> UIImageColorsQuality {
     switch (quality) {
-    case 0:
+    case "lowest":
       return .lowest
-    case 1:
+    case "low":
       return .low
-    case 2:
+    case "high":
       return .high
-    case 3:
+    case "highest":
       fallthrough
     default:
       return .highest
@@ -38,8 +38,8 @@ public class PaletteFrameProcessorPlugin: NSObject, FrameProcessorPluginBase {
     var quality: UIImageColorsQuality = .highest
     
     if !args.isEmpty {
-      if let qualityNumber = args[0] as? NSNumber {
-        quality = convertQuality(quality: qualityNumber.intValue)
+      if let qualityString = args[0] as? NSString {
+        quality = convertQuality(quality: qualityString as String)
       }
     }
     

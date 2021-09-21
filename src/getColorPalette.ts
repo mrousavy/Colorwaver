@@ -8,33 +8,25 @@ export interface Palette {
   detail: string;
 }
 
-export enum ColorPaletteQuality {
-  /**
-   * Resize Frame to 50px width
-   */
-  lowest = 0,
-  /**
-   * Resize Frame to 100px width
-   */
-  low = 1,
-  /**
-   * Resize Frame to 250px width
-   */
-  high = 2,
-  /**
-   * Don't resize Frame at all
-   */
-  highest = 3,
-}
+/**
+ * * `'lowest'`: Resize Frame to 50px width
+ * * `'low'`: Resize Frame to 100px width
+ * * `'high'`: Resize Frame to 250px width
+ * * `'highest'`: Don't resize Frame at all
+ */
+export type ColorPaletteQuality = 'lowest' | 'low' | 'high' | 'highest';
 
 // Frame Processor Plugin name
 declare global {
-  var __getColorPalette: (frame: Frame, quality: 0 | 1 | 2 | 3) => Palette;
+  var __getColorPalette: (
+    frame: Frame,
+    quality: ColorPaletteQuality,
+  ) => Palette;
 }
 
 export function getColorPalette(
   frame: Frame,
-  quality: ColorPaletteQuality = ColorPaletteQuality.highest,
+  quality: ColorPaletteQuality = 'highest',
 ): Palette {
   'worklet';
   return __getColorPalette(frame, quality);

@@ -142,7 +142,7 @@ export function App() {
 
   const onTapBegin = useWorkletCallback(() => {
     isActive.value = false;
-    runOnJS(hapticFeedback)();
+    runOnJS(hapticFeedback)('selection');
   }, [isActive]);
   const onTapEnd = useWorkletCallback(() => {
     isActive.value = true;

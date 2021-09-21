@@ -23,6 +23,7 @@ import Reanimated, {
 import ColorTile from './components/ColorTile';
 import {TapGestureHandler} from 'react-native-gesture-handler';
 import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
+import {AnimatedStatusBar} from './components/AnimatedStatusBar';
 
 const ReanimatedCamera = Reanimated.createAnimatedComponent(Camera);
 Reanimated.addWhitelistedNativeProps({
@@ -189,6 +190,7 @@ export function App() {
       minPointers={1}
       maxDurationMs={999999}>
       <Reanimated.View style={styles.container}>
+        <AnimatedStatusBar animated={true} isVisible={isActive} />
         <ReanimatedCamera
           device={device}
           isActive={true} // <-- overriden by animatedProps

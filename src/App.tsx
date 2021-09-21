@@ -1,5 +1,5 @@
-import React, {useCallback, useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {AppState, StyleSheet, View} from 'react-native';
 import {
   Camera,
   CameraProps,
@@ -94,6 +94,15 @@ export function App() {
     },
     [],
   );
+
+  useEffect(() => {
+    const listener = AppState.addEventListener('change', state => {
+      isActive.value = state === 'active';
+    });
+    return () => {
+      listener.remove();
+    };
+  }, [isActive]);
 
   if (device == null) {
     return <View style={styles.blackscreen} />;

@@ -31,17 +31,18 @@ Reanimated.addWhitelistedNativeProps({
 });
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
+const SAFE_BOTTOM = StaticSafeAreaInsets.safeAreaInsetsBottom;
 
 const DEFAULT_COLOR = '#000000';
 const MAX_FRAME_PROCESSOR_FPS = 3;
 
 const TILE_SIZE = SCREEN_WIDTH / 4;
+const ACTIVE_TILE_HEIGHT = TILE_SIZE * 1.3 + SAFE_BOTTOM;
 const ACTIVE_TILE_SCALE = 0.9;
 const ACTIVE_CONTAINER_SCALE = 0.95;
 const ACTIVE_CONTAINER_PADDING = TILE_SIZE - TILE_SIZE * ACTIVE_TILE_SCALE;
 const TRANSLATE_Y_ACTIVE =
-  (SCREEN_WIDTH - SCREEN_WIDTH * ACTIVE_CONTAINER_SCALE) / 2 +
-  StaticSafeAreaInsets.safeAreaInsetsBottom;
+  (SCREEN_WIDTH - SCREEN_WIDTH * ACTIVE_CONTAINER_SCALE) / 2 + SAFE_BOTTOM;
 
 export function App() {
   const [frameProcessorFps, setFrameProcessorFps] = useState(3);
@@ -119,7 +120,12 @@ export function App() {
       height: interpolate(
         isActiveAnimation.value,
         [0, 1],
-        [TILE_SIZE * 1.3, TILE_SIZE],
+        [ACTIVE_TILE_HEIGHT, TILE_SIZE],
+      ),
+      paddingBottom: interpolate(
+        isActiveAnimation.value,
+        [0, 1],
+        [SAFE_BOTTOM, 0],
       ),
     }),
     [isActiveAnimation],
@@ -190,7 +196,11 @@ export function App() {
       minPointers={1}
       maxDurationMs={999999}>
       <Reanimated.View style={styles.container}>
-        <AnimatedStatusBar animated={true} isVisible={isActive} />
+        <AnimatedStatusBar
+          barStyle="light-content"
+          animated={true}
+          isVisible={isActive}
+        />
         <ReanimatedCamera
           device={device}
           isActive={true} // <-- overriden by animatedProps

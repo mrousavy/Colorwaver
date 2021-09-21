@@ -6,7 +6,6 @@ import Reanimated, {
 import AnimateableText from 'react-native-animateable-text';
 import {StyleSheet, Text, ViewStyle} from 'react-native';
 import {useAnimatedColor} from '../utils/useAnimatedColor';
-import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 
 type ColorTileProps = {
   name: string;
@@ -53,10 +52,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingLeft: 5,
-    paddingTop: 5,
-    paddingRight: 5,
-    paddingBottom: 5 + StaticSafeAreaInsets.safeAreaInsetsBottom,
+    padding: 5,
   },
   text: {
     fontSize: 14,

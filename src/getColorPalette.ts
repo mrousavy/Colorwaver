@@ -1,5 +1,5 @@
 /* globals __getColorPalette */
-import {Frame} from 'react-native-vision-camera';
+import type {Frame} from 'react-native-vision-camera';
 
 export interface Palette {
   primary: string;

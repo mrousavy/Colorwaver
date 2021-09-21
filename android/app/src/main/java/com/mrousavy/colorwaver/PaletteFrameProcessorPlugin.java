@@ -1,4 +1,4 @@
-package com.colorwaver;
+package com.mrousavy.colorwaver;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.camera.core.ImageProxy;
 import androidx.palette.graphics.Palette;
-import com.colorwaver.utils.YuvToRgbConverter;
+import com.mrousavy.colorwaver.utils.YuvToRgbConverter;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.mrousavy.camera.frameprocessor.FrameProcessorPlugin;
 

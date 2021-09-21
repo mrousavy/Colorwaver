@@ -1,4 +1,4 @@
-package com.colorwaver;
+package com.mrousavy.colorwaver;
 
 import com.facebook.react.ReactActivity;
 import com.mrousavy.camera.frameprocessor.FrameProcessorPlugin;

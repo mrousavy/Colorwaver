@@ -1,4 +1,4 @@
-name: Release iOS App
+name: Release Android App
 
 on:
   push:
@@ -7,11 +7,11 @@ on:
 
 jobs:
   release:
-    name: Release iOS App
-    runs-on: macOS-latest
+    name: Release Android App
+    runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ios
+        working-directory: android
     steps:
       - uses: actions/checkout@v2
 
@@ -38,20 +38,7 @@ jobs:
         with:
           ruby-version: 2.6
           bundler-cache: true
-          working-directory: ios
-
-      - name: Restore Pods cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            ios/Pods
-            ~/Library/Caches/CocoaPods
-            ~/.cocoapods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-
-      - name: Install Pods
-        run: bundle exec pod check || bundle exec pod install
+          working-directory: android
 
       - name: Run fastlane
         run: bundle exec fastlane release

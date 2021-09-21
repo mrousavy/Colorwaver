@@ -11,11 +11,17 @@ import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 type ColorTileProps = {
   name: string;
   color: Reanimated.SharedValue<string>;
+  animationDuration: number;
   animatedStyle?: ViewStyle;
 };
 
-const ColorTile = ({name, color, animatedStyle}: ColorTileProps) => {
-  const animatedColor = useAnimatedColor(color);
+const ColorTile = ({
+  name,
+  color,
+  animationDuration,
+  animatedStyle,
+}: ColorTileProps) => {
+  const animatedColor = useAnimatedColor(color, animationDuration);
   const animatedBackgroundStyle = useAnimatedStyle(
     () => ({
       backgroundColor: animatedColor.value,
@@ -48,7 +54,6 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingRight: 5,
     paddingBottom: 5 + StaticSafeAreaInsets.safeAreaInsetsBottom,
-    aspectRatio: 1 / 1.4,
   },
   text: {
     fontSize: 14,

@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {AppState, Dimensions, StyleSheet, View} from 'react-native';
 import {
   Camera,
@@ -33,7 +33,7 @@ Reanimated.addWhitelistedNativeProps({
 });
 
 const DEFAULT_COLOR = '#000000';
-const MAX_FRAME_PROCESSOR_FPS = 5;
+const MAX_FRAME_PROCESSOR_FPS = 3;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const TRANSLATE_Y_ACTIVE =
   (SCREEN_WIDTH - SCREEN_WIDTH * 0.9) / 2 +
@@ -42,6 +42,11 @@ const TRANSLATE_Y_ACTIVE =
 export function App() {
   const [frameProcessorFps, setFrameProcessorFps] = useState(3);
   const isActive = useSharedValue(true);
+
+  const colorAnimationDuration = useMemo(
+    () => (1 / frameProcessorFps) * 1000,
+    [frameProcessorFps],
+  );
 
   const devices = useCameraDevices('wide-angle-camera');
   const device = devices.back;
@@ -180,21 +185,25 @@ export function App() {
           <ColorTile
             name="Primary"
             color={primaryColor}
+            animationDuration={colorAnimationDuration}
             animatedStyle={colorTileStyle}
           />
           <ColorTile
             name="Secondary"
             color={secondaryColor}
+            animationDuration={colorAnimationDuration}
             animatedStyle={colorTileStyle}
           />
           <ColorTile
             name="Background"
             color={backgroundColor}
+            animationDuration={colorAnimationDuration}
             animatedStyle={colorTileStyle}
           />
           <ColorTile
             name="Detail"
             color={detailColor}
+            animationDuration={colorAnimationDuration}
             animatedStyle={colorTileStyle}
           />
         </Reanimated.View>

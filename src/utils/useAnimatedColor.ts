@@ -11,6 +11,7 @@ const DEFAULT_COLOR = '#000000';
 
 export function useAnimatedColor(
   color: Reanimated.SharedValue<string>,
+  animationDuration: number,
 ): Readonly<Reanimated.SharedValue<string | number>> {
   const animation = useSharedValue(0);
   const colorFrom = useSharedValue(DEFAULT_COLOR);
@@ -23,7 +24,7 @@ export function useAnimatedColor(
       colorFrom.value = prevColor ?? DEFAULT_COLOR;
       colorTo.value = newColor;
       animation.value = withTiming(1, {
-        duration: 150,
+        duration: animationDuration,
         easing: Easing.linear,
       });
     },

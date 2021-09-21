@@ -4477,7 +4477,7 @@ react-native-vision-camera@^2.7.0:
   resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-2.7.0.tgz#da2acc5b572ab04e2491acc1000ca6175e67f98e"
   integrity sha512-adBMOAzDng00MhGjjmXbDCminHnKRZqn58ZXUW5fgiMzKYGOCGD1zsZlTEiKVrB4NKjDLSwbxwhHDKfKe06hRg==
 
-react-native@0.65.1:
+react-native@^0.65.1:
   version "0.65.1"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.65.1.tgz#bd8cd313e0eb8ddcf08e61e3f8b54b7fc31a418c"
   integrity sha512-0UOVSnlssweQZjuaUtzViCifE/4tXm8oRbxwakopc8GavPu9vLulde145GOw6QVYiOy4iL50f+2XXRdX9NmMeQ==
@@ -4518,7 +4518,7 @@ react-refresh@^0.4.0:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.4.3.tgz#966f1750c191672e76e16c2efa569150cc73ab53"
   integrity sha512-Hwln1VNuGl/6bVwnd0Xdn1e84gT/8T9aYNL+HAKDArLCS7LWjwr7StE30IEYbIkx0Vi3vs+coQxe+SQDbGbbpA==
 
-react@17.0.2:
+react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
   integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==

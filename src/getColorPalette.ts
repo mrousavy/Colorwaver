@@ -9,9 +9,21 @@ export interface Palette {
 }
 
 export enum ColorPaletteQuality {
+  /**
+   * Resize Frame to 50px width
+   */
   lowest = 0,
+  /**
+   * Resize Frame to 100px width
+   */
   low = 1,
+  /**
+   * Resize Frame to 250px width
+   */
   high = 2,
+  /**
+   * Don't resize Frame at all
+   */
   highest = 3,
 }
 

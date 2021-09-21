@@ -1,0 +1,66 @@
+diff --git a/node_modules/react-native-reanimated/lib/reanimated2/Colors.js b/node_modules/react-native-reanimated/lib/reanimated2/Colors.js
+index c0ae8ce..fdff2e5 100644
+--- a/node_modules/react-native-reanimated/lib/reanimated2/Colors.js
++++ b/node_modules/react-native-reanimated/lib/reanimated2/Colors.js
+@@ -538,16 +538,8 @@ const interpolateColorsRGB = (value, inputRange, colors) => {
+     return rgbaColor(r, g, b, a);
+ };
+ const BUFFER_SIZE = 200;
+-const hashOrderRGBA = new ArrayBuffer(BUFFER_SIZE);
+-let curentHashIndexRGBA = 0;
+-const interpolateCacheRGBA = {};
+ const getInterpolateCacheRGBA = (colors) => {
+     'worklet';
+-    const hash = colors.join('');
+-    const cache = interpolateCacheRGBA[hash];
+-    if (cache !== undefined) {
+-        return cache;
+-    }
+     const r = [];
+     const g = [];
+     const b = [];
+@@ -563,26 +555,10 @@ const getInterpolateCacheRGBA = (colors) => {
+             a.push(opacity(proocessedColor));
+         }
+     }
+-    const newCache = { r, g, b, a };
+-    const overrideHash = hashOrderRGBA[curentHashIndexRGBA];
+-    if (overrideHash) {
+-        delete interpolateCacheRGBA[overrideHash];
+-    }
+-    interpolateCacheRGBA[hash] = newCache;
+-    hashOrderRGBA[curentHashIndexRGBA] = hash;
+-    curentHashIndexRGBA = (curentHashIndexRGBA + 1) % BUFFER_SIZE;
+-    return newCache;
++    return { r, g, b, a };
+ };
+-const hashOrderHSV = new ArrayBuffer(BUFFER_SIZE);
+-let curentHashIndexHSV = 0;
+-const interpolateCacheHSV = {};
+ const getInterpolateCacheHSV = (colors) => {
+     'worklet';
+-    const hash = colors.join('');
+-    const cache = interpolateCacheHSV[hash];
+-    if (cache !== undefined) {
+-        return cache;
+-    }
+     const h = [];
+     const s = [];
+     const v = [];
+@@ -595,15 +571,7 @@ const getInterpolateCacheHSV = (colors) => {
+             v.push(proocessedColor.v);
+         }
+     }
+-    const newCache = { h, s, v };
+-    const overrideHash = hashOrderHSV[curentHashIndexHSV];
+-    if (overrideHash) {
+-        delete interpolateCacheHSV[overrideHash];
+-    }
+-    interpolateCacheHSV[hash] = newCache;
+-    hashOrderHSV[curentHashIndexHSV] = hash;
+-    curentHashIndexHSV = (curentHashIndexHSV + 1) % BUFFER_SIZE;
+-    return newCache;
++    return { h, s, v };
+ };
+ export const interpolateColor = (value, inputRange, outputRange, colorSpace = 'RGB') => {
+     'worklet';

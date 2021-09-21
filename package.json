@@ -11,7 +11,8 @@
     "pods": "cd ios && bundle exec pod install",
     "start": "react-native start",
     "lint": "eslint .",
-    "release-ios": "cd ios && pod install && bundle install && bundle exec fastlane release"
+    "release-ios": "cd ios && pod install && bundle install && bundle exec fastlane release",
+    "postinstall": "npx patch-package"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.2",

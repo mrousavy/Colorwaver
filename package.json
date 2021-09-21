@@ -13,6 +13,7 @@
     "lint": "eslint .",
     "typescript": "tsc --noEmit",
     "release-ios": "cd ios && pod install && bundle install && bundle exec fastlane release",
+    "release-android": "cd android && bundle install && bundle exec fastlane deploy",
     "postinstall": "npx patch-package"
   },
   "dependencies": {

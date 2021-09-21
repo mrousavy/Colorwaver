@@ -29,10 +29,16 @@ public class PaletteFrameProcessorPlugin: NSObject, FrameProcessorPluginBase {
   
   @objc
   public static func callback(_ frame: Frame!, withArgs args: [Any]!) -> Any! {
-    let imageBuffer = CMSampleBufferGetImageBuffer(frame.buffer)!
+    guard let imageBuffer = CMSampleBufferGetImageBuffer(frame.buffer) else {
+      print("Failed to get CVPixelBuffer!")
+      return nil
+    }
     let ciImage = CIImage(cvPixelBuffer: imageBuffer)
 
-    let cgImage = context.createCGImage(ciImage, from: ciImage.extent)!
+    guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else {
+      print("Failed to create CGImage!")
+      return nil
+    }
     let image = UIImage(cgImage: cgImage)
     
     var quality: UIImageColorsQuality = .highest
@@ -43,7 +49,10 @@ public class PaletteFrameProcessorPlugin: NSObject, FrameProcessorPluginBase {
       }
     }
     
-    let colors = image.getColors(quality: quality)!
+    guard let colors = image.getColors(quality: quality) else {
+      print("Failed to get Image Color Palette!")
+      return nil
+    }
     
     return [
       "primary": colors.primary.hexString,

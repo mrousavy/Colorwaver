@@ -1,24 +1,30 @@
-import React, {useCallback, useState} from 'react';
-import {Pressable, StyleSheet, View} from 'react-native';
+import React, {useCallback} from 'react';
+import {StyleSheet, View} from 'react-native';
 import {
   Camera,
+  CameraProps,
   CameraRuntimeError,
   useCameraDevices,
   useFrameProcessor,
 } from 'react-native-vision-camera';
-import Reanimated from 'react-native-reanimated';
 import {getColorPalette} from './getColorPalette';
-import {useSharedValue} from 'react-native-reanimated';
+import Reanimated, {
+  useAnimatedGestureHandler,
+  useAnimatedProps,
+  useSharedValue,
+} from 'react-native-reanimated';
 import ColorTile from './components/ColorTile';
+import {
+  TapGestureHandler,
+  TapGestureHandlerGestureEvent,
+} from 'react-native-gesture-handler';
 
-Reanimated.addWhitelistedNativeProps({
-  text: true,
-});
+const ReanimatedCamera = Reanimated.createAnimatedComponent(Camera);
 
 const DEFAULT_COLOR = '#000000';
 
 export function App() {
-  const [isActive, setIsActive] = useState(true);
+  const isActive = useSharedValue(true);
 
   const devices = useCameraDevices('wide-angle-camera');
   const device = devices.back;
@@ -34,21 +40,40 @@ export function App() {
     console.log('Camera initialized!');
   }, []);
 
-  const frameProcessor = useFrameProcessor(frame => {
-    'worklet';
-    const colors = getColorPalette(frame);
-    primaryColor.value = colors.primary;
-    secondaryColor.value = colors.secondary;
-    backgroundColor.value = colors.background;
-    detailColor.value = colors.detail;
-  }, []);
+  const frameProcessor = useFrameProcessor(
+    frame => {
+      'worklet';
+      if (!isActive.value) {
+        // handbrake
+        return;
+      }
+      const colors = getColorPalette(frame);
+      primaryColor.value = colors.primary;
+      secondaryColor.value = colors.secondary;
+      backgroundColor.value = colors.background;
+      detailColor.value = colors.detail;
+    },
+    [isActive],
+  );
 
-  const onPressIn = useCallback(() => {
-    setIsActive(false);
-  }, []);
-  const onPressOut = useCallback(() => {
-    setIsActive(true);
-  }, []);
+  const onTapGestureEvent =
+    useAnimatedGestureHandler<TapGestureHandlerGestureEvent>(
+      {
+        onStart: () => {
+          isActive.value = false;
+        },
+        onFinish: () => {
+          isActive.value = true;
+        },
+      },
+      [isActive],
+    );
+  const cameraAnimatedProps = useAnimatedProps<CameraProps>(
+    () => ({
+      isActive: isActive.value,
+    }),
+    [isActive],
+  );
 
   if (device == null) {
     return <View style={styles.blackscreen} />;
@@ -57,26 +82,28 @@ export function App() {
   console.log(`Camera Device: ${device.name}`);
 
   return (
-    <Pressable
-      style={styles.container}
-      onPressIn={onPressIn}
-      onPressOut={onPressOut}>
-      <Camera
-        device={device}
-        isActive={isActive}
-        frameProcessor={frameProcessor}
-        style={styles.camera}
-        onError={onCameraError}
-        onInitialized={onCameraInitialized}
-        frameProcessorFps={3}
-      />
-      <View style={styles.palettes}>
-        <ColorTile name="Primary" color={primaryColor} />
-        <ColorTile name="Secondary" color={secondaryColor} />
-        <ColorTile name="Background" color={backgroundColor} />
-        <ColorTile name="Detail" color={detailColor} />
-      </View>
-    </Pressable>
+    <TapGestureHandler
+      onGestureEvent={onTapGestureEvent}
+      maxDurationMs={999999}>
+      <Reanimated.View style={styles.container}>
+        <ReanimatedCamera
+          device={device}
+          isActive={true} // <-- overriden by animatedProps
+          frameProcessor={frameProcessor}
+          style={styles.camera}
+          onError={onCameraError}
+          onInitialized={onCameraInitialized}
+          frameProcessorFps={3}
+          animatedProps={cameraAnimatedProps}
+        />
+        <View style={styles.palettes}>
+          <ColorTile name="Primary" color={primaryColor} />
+          <ColorTile name="Secondary" color={secondaryColor} />
+          <ColorTile name="Background" color={backgroundColor} />
+          <ColorTile name="Detail" color={detailColor} />
+        </View>
+      </Reanimated.View>
+    </TapGestureHandler>
   );
 }
 

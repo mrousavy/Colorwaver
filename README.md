@@ -2,7 +2,7 @@
   <h1><img align="center" src="./ios/Colorwaver/Images.xcassets/AppIcon.appiconset/50.png" /> Colorwaver</h1>
 
   <a align="center" href="https://play.google.com/store/apps/details?id=com.mrousavy.colorwaver"><img align="center" src="./img/store_badge_android.png" height="50" /></a>
-  <a align="center" href="https://apps.apple.com/at/app/colorwaver/id1158967485?l=en"><img align="center" src="./img/store_badge_apple.png" height="52" /></a>
+  <a align="center" href="https://apps.apple.com/at/app/colorwaver/id1583400396"><img align="center" src="./img/store_badge_apple.png" height="52" /></a>
 </div>
 
 An app to detect **colorwaves** (swatches/palettes) in the real world - powered by [VisionCamera](https://github.com/mrousavy/react-native-vision-camera) and [Reanimated](https://github.com/software-mansion/react-native-reanimated).

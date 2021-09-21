@@ -1,20 +1,32 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
+    "allowJs": false,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
     "esModuleInterop": true,
-    "isolatedModules": true,
-    "jsx": "react",
-    "lib": ["es6"],
+    "importsNotUsedAsValues": "error",
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-native",
+    "lib": ["esnext"],
+    "module": "esnext",
     "moduleResolution": "node",
-    "noEmit": true,
-    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noStrictGenericChecks": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "noUncheckedIndexedAccess": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
     "target": "esnext"
   },
-  "exclude": [
-    "node_modules",
+  "include": [
+    "src",
+    ".eslintrc.js",
     "babel.config.js",
-    "metro.config.js",
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

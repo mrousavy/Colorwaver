@@ -1,9 +1,9 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useCallback, useEffect, useState} from 'react';
 import {Alert, Image, Linking, StyleSheet, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Camera} from 'react-native-vision-camera';
-import {Routes} from './Routes';
+import type {Routes} from './Routes';
 
 const IMAGE = require('./assets/icon.png');
 

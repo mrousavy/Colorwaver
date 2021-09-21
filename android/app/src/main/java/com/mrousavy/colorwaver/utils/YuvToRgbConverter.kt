@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.colorwaver.utils
+package com.mrousavy.colorwaver.utils
 
 // SOURCE: https://github.com/android/camera-samples/tree/master/Camera2Basic/utils/src/main/java/com/example/android/camera/utils
 

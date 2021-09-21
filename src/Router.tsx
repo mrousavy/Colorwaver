@@ -4,7 +4,7 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Camera} from 'react-native-vision-camera';
 import {App} from './App';
-import {Routes} from './Routes';
+import type {Routes} from './Routes';
 import {Splash} from './Splash';
 
 const Stack = createNativeStackNavigator<Routes>();

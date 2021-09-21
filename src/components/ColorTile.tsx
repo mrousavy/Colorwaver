@@ -1,32 +1,43 @@
+import React from 'react';
 import Reanimated, {
   useAnimatedProps,
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import AnimateableText from 'react-native-animateable-text';
-import {StyleSheet, Text} from 'react-native';
-import React from 'react';
-import {useAnimatedColor} from '../useAnimatedColor';
+import {StyleSheet, Text, ViewStyle} from 'react-native';
+import {useAnimatedColor} from '../utils/useAnimatedColor';
 
 type ColorTileProps = {
   name: string;
   color: Reanimated.SharedValue<string>;
+  animationDuration: number;
+  animatedStyle?: ViewStyle;
 };
 
-const ColorTile = ({name, color}: ColorTileProps) => {
-  const animatedColor = useAnimatedColor(color);
-  const animatedStyles = useAnimatedStyle(
+const ColorTile = ({
+  name,
+  color,
+  animationDuration,
+  animatedStyle,
+}: ColorTileProps) => {
+  const animatedColor = useAnimatedColor(color, animationDuration);
+  const animatedBackgroundStyle = useAnimatedStyle(
     () => ({
       backgroundColor: animatedColor.value,
     }),
-    [],
+    [animatedColor],
   );
 
-  const animatedProps = useAnimatedProps(() => ({
-    text: color.value,
-  }));
+  const animatedProps = useAnimatedProps(
+    () => ({
+      text: color.value,
+    }),
+    [color],
+  );
 
   return (
-    <Reanimated.View style={[styles.tile, animatedStyles]}>
+    <Reanimated.View
+      style={[styles.tile, animatedBackgroundStyle, animatedStyle]}>
       <Text style={styles.text}>{name}</Text>
       <AnimateableText
         animatedProps={animatedProps}
@@ -41,6 +52,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 5,
   },
   text: {
     fontSize: 14,
@@ -58,4 +70,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ColorTile;
+export default React.memo(ColorTile);

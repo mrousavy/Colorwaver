@@ -1,0 +1,44 @@
+name: Release Android App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Release Android App
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: android
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Restore node_modules from cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install node_modules
+        run: yarn install --frozen-lockfile --cwd ..
+
+      - name: Restore buildcache
+        uses: mikehardy/buildcache-action@v1
+        continue-on-error: true
+
+      - name: Setup Ruby (bundle)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+          bundler-cache: true
+          working-directory: android
+
+      - name: Run fastlane
+        run: bundle exec fastlane release

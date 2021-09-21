@@ -10,7 +10,10 @@ interface Props extends Omit<StatusBarProps, 'hidden'> {
   isVisible: Reanimated.SharedValue<boolean>;
 }
 
-export function AnimatedStatusBar({isVisible}: Props): React.ReactElement {
+export function AnimatedStatusBar({
+  isVisible,
+  ...props
+}: Props): React.ReactElement {
   const [isHidden, setIsHidden] = useState(false);
 
   useAnimatedReaction(
@@ -21,5 +24,5 @@ export function AnimatedStatusBar({isVisible}: Props): React.ReactElement {
     [isVisible],
   );
 
-  return <StatusBar hidden={isHidden} />;
+  return <StatusBar {...props} hidden={isHidden} />;
 }

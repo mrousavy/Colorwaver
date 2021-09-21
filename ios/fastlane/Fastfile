@@ -1,7 +1,8 @@
 # Fastlane
 
 lane :release do
-  sync_code_signing(type: "appstore")
+  sync_code_signing(type: "appstore",
+                    git_url: "https://github.com/Colorwaver/certificates")
 
   disable_automatic_code_signing(path: "Colorwaver.xcodeproj")
   build_app(scheme: "Colorwaver",

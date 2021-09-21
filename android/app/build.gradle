@@ -191,7 +191,7 @@ dependencies {
     implementation "androidx.camera:camera-core:1.1.0-alpha08"
     implementation "androidx.palette:palette:1.0.0"
 
-    implementation 'com.eightbitlab:blurview:1.6.6' {
+    implementation('com.eightbitlab:blurview:1.6.6') {
         force = true
     }
 

@@ -55,7 +55,7 @@ export function App() {
         // handbrake
         return;
       }
-      const colors = getColorPalette(frame);
+      const colors = getColorPalette(frame, 'lowest');
       primaryColor.value = colors.primary;
       secondaryColor.value = colors.secondary;
       backgroundColor.value = colors.background;

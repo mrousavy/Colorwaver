@@ -311,7 +311,7 @@ PODS:
     - React-Core
     - React-RCTImage
   - UIImageColors (2.1.0)
-  - VisionCamera (2.7.0):
+  - VisionCamera (2.8.0):
     - React
     - React-callinvoker
     - React-Core
@@ -472,7 +472,7 @@ SPEC CHECKSUMS:
   RNReanimated: 48e578538b2fad573d3d5ce2e80ad375e1534d87
   RNScreens: 0591543e343c7444ea1756b6265d81a4295922c9
   UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
-  VisionCamera: 575e691d9eda91dce798f9958770b39841bbd981
+  VisionCamera: c760f5e5207ca71962e46a7e70eef5d8d8e86ad7
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
 
 PODFILE CHECKSUM: 3fda28f39f80baa950e3d286f6416364b80a4e21

@@ -1,9 +1,10 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {
   Camera,
   CameraProps,
   CameraRuntimeError,
+  FrameProcessorPerformanceSuggestion,
   useCameraDevices,
   useFrameProcessor,
 } from 'react-native-vision-camera';
@@ -22,10 +23,15 @@ import {
 } from 'react-native-gesture-handler';
 
 const ReanimatedCamera = Reanimated.createAnimatedComponent(Camera);
+Reanimated.addWhitelistedNativeProps({
+  isActive: true,
+});
 
 const DEFAULT_COLOR = '#000000';
+const MAX_FRAME_PROCESSOR_FPS = 5;
 
 export function App() {
+  const [frameProcessorFps, setFrameProcessorFps] = useState(3);
   const isActive = useSharedValue(true);
 
   const devices = useCameraDevices('wide-angle-camera');
@@ -78,6 +84,17 @@ export function App() {
     [isActive],
   );
 
+  const onFrameProcessorPerformanceSuggestionAvailable = useCallback(
+    (suggestion: FrameProcessorPerformanceSuggestion) => {
+      const newFps = Math.min(
+        suggestion.suggestedFrameProcessorFps,
+        MAX_FRAME_PROCESSOR_FPS,
+      );
+      setFrameProcessorFps(newFps);
+    },
+    [],
+  );
+
   if (device == null) {
     return <View style={styles.blackscreen} />;
   }
@@ -87,6 +104,8 @@ export function App() {
   return (
     <TapGestureHandler
       onGestureEvent={onTapGestureEvent}
+      enabled={true}
+      minPointers={1}
       maxDurationMs={999999}>
       <Reanimated.View style={styles.container}>
         <ReanimatedCamera
@@ -96,7 +115,10 @@ export function App() {
           style={styles.camera}
           onError={onCameraError}
           onInitialized={onCameraInitialized}
-          frameProcessorFps={3}
+          frameProcessorFps={frameProcessorFps}
+          onFrameProcessorPerformanceSuggestionAvailable={
+            onFrameProcessorPerformanceSuggestionAvailable
+          }
           animatedProps={cameraAnimatedProps}
         />
         <View style={styles.palettes}>

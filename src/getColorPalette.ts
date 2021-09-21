@@ -8,12 +8,22 @@ export interface Palette {
   detail: string;
 }
 
-// Frame Processor Plugin name
-declare global {
-  var __getColorPalette: (frame: Frame) => Palette;
+export enum ColorPaletteQuality {
+  lowest = 0,
+  low = 1,
+  high = 2,
+  highest = 3,
 }
 
-export function getColorPalette(frame: Frame): Palette {
+// Frame Processor Plugin name
+declare global {
+  var __getColorPalette: (frame: Frame, quality: 0 | 1 | 2 | 3) => Palette;
+}
+
+export function getColorPalette(
+  frame: Frame,
+  quality: ColorPaletteQuality = ColorPaletteQuality.highest,
+): Palette {
   'worklet';
-  return __getColorPalette(frame);
+  return __getColorPalette(frame, quality);
 }

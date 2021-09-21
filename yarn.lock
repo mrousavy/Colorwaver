@@ -4551,6 +4551,11 @@ react-native-screens@^3.4.0, react-native-screens@^3.7.2:
   dependencies:
     warn-once "^0.1.0"
 
+react-native-static-safe-area-insets@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-static-safe-area-insets/-/react-native-static-safe-area-insets-2.1.1.tgz#394a3510c7029288895bbaccf1dadf4fa46c4b88"
+  integrity sha512-NUSRNZp+0IJOuLeoHoU4kw/cY9g7ozUo2ApCbJAiPyYbkbv49S8gdAcZRkeR0nqwzFDA07sCZCbPI03iEV0RTQ==
+
 react-native-vision-camera@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-2.8.0.tgz#f693f65c70ce58d5fefc12c874e07cba658f4364"

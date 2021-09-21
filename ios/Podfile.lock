@@ -310,6 +310,8 @@ PODS:
   - RNScreens (3.7.2):
     - React-Core
     - React-RCTImage
+  - RNStaticSafeAreaInsets (2.1.1):
+    - React
   - UIImageColors (2.1.0)
   - VisionCamera (2.8.0):
     - React
@@ -353,6 +355,7 @@ DEPENDENCIES:
   - RNReactNativeHapticFeedback (from `../node_modules/react-native-haptic-feedback`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNStaticSafeAreaInsets (from `../node_modules/react-native-static-safe-area-insets`)
   - UIImageColors
   - VisionCamera (from `../node_modules/react-native-vision-camera`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -430,6 +433,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNStaticSafeAreaInsets:
+    :path: "../node_modules/react-native-static-safe-area-insets"
   VisionCamera:
     :path: "../node_modules/react-native-vision-camera"
   Yoga:
@@ -471,6 +476,7 @@ SPEC CHECKSUMS:
   RNReactNativeHapticFeedback: 653a8c126a0f5e88ce15ffe280b3ff37e1fbb285
   RNReanimated: 48e578538b2fad573d3d5ce2e80ad375e1534d87
   RNScreens: 0591543e343c7444ea1756b6265d81a4295922c9
+  RNStaticSafeAreaInsets: 6103cf09647fa427186d30f67b0f5163c1ae8252
   UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
   VisionCamera: c760f5e5207ca71962e46a7e70eef5d8d8e86ad7
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4

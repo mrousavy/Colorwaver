@@ -25,6 +25,7 @@ import {
   TapGestureHandler,
   TapGestureHandlerGestureEvent,
 } from 'react-native-gesture-handler';
+import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 
 const ReanimatedCamera = Reanimated.createAnimatedComponent(Camera);
 Reanimated.addWhitelistedNativeProps({
@@ -34,7 +35,9 @@ Reanimated.addWhitelistedNativeProps({
 const DEFAULT_COLOR = '#000000';
 const MAX_FRAME_PROCESSOR_FPS = 5;
 const SCREEN_WIDTH = Dimensions.get('window').width;
-const TRANSLATE_Y_ACTIVE = (SCREEN_WIDTH - SCREEN_WIDTH * 0.9) / 2;
+const TRANSLATE_Y_ACTIVE =
+  (SCREEN_WIDTH - SCREEN_WIDTH * 0.9) / 2 +
+  StaticSafeAreaInsets.safeAreaInsetsBottom;
 
 export function App() {
   const [frameProcessorFps, setFrameProcessorFps] = useState(3);

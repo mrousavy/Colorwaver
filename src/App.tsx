@@ -13,18 +13,15 @@ import {hapticFeedback} from './utils/hapticFeedback';
 import Reanimated, {
   interpolate,
   runOnJS,
-  useAnimatedGestureHandler,
   useAnimatedProps,
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
+  useWorkletCallback,
   withSpring,
 } from 'react-native-reanimated';
 import ColorTile from './components/ColorTile';
-import {
-  TapGestureHandler,
-  TapGestureHandlerGestureEvent,
-} from 'react-native-gesture-handler';
+import {TapGestureHandler} from 'react-native-gesture-handler';
 import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 
 const ReanimatedCamera = Reanimated.createAnimatedComponent(Camera);
@@ -38,6 +35,8 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 const TRANSLATE_Y_ACTIVE =
   (SCREEN_WIDTH - SCREEN_WIDTH * 0.9) / 2 +
   StaticSafeAreaInsets.safeAreaInsetsBottom;
+
+const COLOR_TILE_SIZE = SCREEN_WIDTH / 4;
 
 export function App() {
   const [frameProcessorFps, setFrameProcessorFps] = useState(3);
@@ -95,6 +94,12 @@ export function App() {
     () => ({
       borderRadius: interpolate(isActiveAnimation.value, [0, 1], [15, 0]),
       margin: interpolate(isActiveAnimation.value, [0, 1], [5, 0]),
+      width: COLOR_TILE_SIZE,
+      height: interpolate(
+        isActiveAnimation.value,
+        [0, 1],
+        [COLOR_TILE_SIZE * 1.3, COLOR_TILE_SIZE],
+      ),
     }),
     [isActiveAnimation],
   );
@@ -115,19 +120,14 @@ export function App() {
     [isActive],
   );
 
-  const onTapGestureEvent =
-    useAnimatedGestureHandler<TapGestureHandlerGestureEvent>(
-      {
-        onStart: () => {
-          isActive.value = false;
-          runOnJS(hapticFeedback)();
-        },
-        onFinish: () => {
-          isActive.value = true;
-        },
-      },
-      [isActive],
-    );
+  const onTapBegin = useWorkletCallback(() => {
+    isActive.value = false;
+    runOnJS(hapticFeedback)();
+  }, [isActive]);
+  const onTapEnd = useWorkletCallback(() => {
+    isActive.value = true;
+  }, [isActive]);
+
   const cameraAnimatedProps = useAnimatedProps<CameraProps>(
     () => ({
       isActive: isActive.value,
@@ -136,9 +136,9 @@ export function App() {
   );
 
   const onFrameProcessorPerformanceSuggestionAvailable = useCallback(
-    (suggestion: FrameProcessorPerformanceSuggestion) => {
+    ({suggestedFrameProcessorFps}: FrameProcessorPerformanceSuggestion) => {
       const newFps = Math.min(
-        suggestion.suggestedFrameProcessorFps,
+        suggestedFrameProcessorFps,
         MAX_FRAME_PROCESSOR_FPS,
       );
       setFrameProcessorFps(newFps);
@@ -163,7 +163,8 @@ export function App() {
 
   return (
     <TapGestureHandler
-      onGestureEvent={onTapGestureEvent}
+      onBegan={onTapBegin}
+      onEnded={onTapEnd}
       enabled={true}
       minPointers={1}
       maxDurationMs={999999}>

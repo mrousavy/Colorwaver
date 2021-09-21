@@ -26,12 +26,15 @@ const ColorTile = ({
     () => ({
       backgroundColor: animatedColor.value,
     }),
-    [],
+    [animatedColor],
   );
 
-  const animatedProps = useAnimatedProps(() => ({
-    text: color.value,
-  }));
+  const animatedProps = useAnimatedProps(
+    () => ({
+      text: color.value,
+    }),
+    [color],
+  );
 
   return (
     <Reanimated.View
@@ -71,4 +74,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ColorTile;
+export default React.memo(ColorTile);

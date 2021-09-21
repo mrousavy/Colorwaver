@@ -5,7 +5,7 @@
   "scripts": {
     "setup": "yarn && cd ios && bundle install && bundle exec pod install",
     "try-ios": "yarn && cd ios && pod install && cd .. && react-native run-ios --device",
-    "try-android": "yarn react-native run-android",
+    "try-android": "adb reverse tcp:8081 tcp:8081 && yarn react-native run-android",
     "android": "react-native run-android",
     "ios": "react-native run-ios --device",
     "pods": "cd ios && bundle exec pod install",

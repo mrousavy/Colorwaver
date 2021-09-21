@@ -11,6 +11,7 @@
     "pods": "cd ios && bundle exec pod install",
     "start": "react-native start",
     "lint": "eslint .",
+    "typescript": "tsc --noEmit",
     "release-ios": "cd ios && pod install && bundle install && bundle exec fastlane release",
     "postinstall": "npx patch-package"
   },

@@ -3,11 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "setup": "yarn && cd ios && bundle install && bundle exec pod install",
     "try-ios": "yarn && cd ios && pod install && cd .. && react-native run-ios --device",
     "try-android": "yarn react-native run-android",
     "android": "react-native run-android",
     "ios": "react-native run-ios --device",
-    "pods": "cd ios && pod install",
+    "pods": "cd ios && bundle exec pod install",
     "start": "react-native start",
     "lint": "eslint .",
     "release-ios": "cd ios && pod install && bundle install && bundle exec fastlane release"
@@ -17,21 +18,21 @@
     "@react-navigation/native-stack": "^6.1.0",
     "react": "17.0.2",
     "react-native": "0.65.1",
-    "react-native-animateable-text": "^0.6.2",
-    "react-native-reanimated": "^2.3.0-alpha.2",
-    "react-native-safe-area-context": "^3.3.0",
-    "react-native-screens": "^3.6.0",
-    "react-native-vision-camera": "^2.6.1"
+    "react-native-animateable-text": "^0.7.0",
+    "react-native-reanimated": "^2.3.0-alpha.3",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.7.2",
+    "react-native-vision-camera": "^2.7.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@babel/runtime": "^7.12.5",
-    "@react-native-community/eslint-config": "^2.0.0",
-    "@types/react": "^17.0.19",
-    "@types/react-native": "^0.64.13",
-    "eslint": "7.14.0",
+    "@babel/core": "^7.15.5",
+    "@babel/runtime": "^7.15.4",
+    "@react-native-community/eslint-config": "^3.0.1",
+    "@types/react": "^17.0.22",
+    "@types/react-native": "^0.65.1",
+    "eslint": "7.32.0",
     "metro-react-native-babel-preset": "^0.66.0",
     "react-native-codegen": "^0.0.7",
-    "typescript": "^4.4.2"
+    "typescript": "^4.4.3"
   }
 }

@@ -29,14 +29,18 @@ Reanimated.addWhitelistedNativeProps({
   isActive: true,
 });
 
+const SCREEN_WIDTH = Dimensions.get('window').width;
+
 const DEFAULT_COLOR = '#000000';
 const MAX_FRAME_PROCESSOR_FPS = 3;
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const TRANSLATE_Y_ACTIVE =
-  (SCREEN_WIDTH - SCREEN_WIDTH * 0.9) / 2 +
-  StaticSafeAreaInsets.safeAreaInsetsBottom;
 
-const COLOR_TILE_SIZE = SCREEN_WIDTH / 4;
+const TILE_SIZE = SCREEN_WIDTH / 4;
+const ACTIVE_TILE_SCALE = 0.9;
+const ACTIVE_CONTAINER_SCALE = 0.95;
+const ACTIVE_CONTAINER_PADDING = TILE_SIZE - TILE_SIZE * ACTIVE_TILE_SCALE;
+const TRANSLATE_Y_ACTIVE =
+  (SCREEN_WIDTH - SCREEN_WIDTH * ACTIVE_CONTAINER_SCALE) / 2 +
+  StaticSafeAreaInsets.safeAreaInsetsBottom;
 
 export function App() {
   const [frameProcessorFps, setFrameProcessorFps] = useState(3);
@@ -75,30 +79,46 @@ export function App() {
     () => ({
       transform: [
         {
-          scale: interpolate(isActiveAnimation.value, [0, 1], [0.9, 1]),
+          scale: interpolate(
+            isActiveAnimation.value,
+            [0, 1],
+            [1, ACTIVE_CONTAINER_SCALE],
+          ),
         },
         {
           translateY: interpolate(
             isActiveAnimation.value,
             [0, 1],
-            [-TRANSLATE_Y_ACTIVE, 0],
+            [0, -TRANSLATE_Y_ACTIVE],
           ),
         },
       ],
-      padding: interpolate(isActiveAnimation.value, [0, 1], [10, 0]),
-      borderRadius: interpolate(isActiveAnimation.value, [0, 1], [25, 0]),
+      padding: interpolate(
+        isActiveAnimation.value,
+        [0, 1],
+        [0, ACTIVE_CONTAINER_PADDING],
+      ),
+      borderRadius: interpolate(isActiveAnimation.value, [0, 1], [0, 25]),
     }),
     [isActiveAnimation],
   );
   const colorTileStyle = useAnimatedStyle(
     () => ({
-      borderRadius: interpolate(isActiveAnimation.value, [0, 1], [15, 0]),
-      margin: interpolate(isActiveAnimation.value, [0, 1], [5, 0]),
-      width: COLOR_TILE_SIZE,
+      borderRadius: interpolate(isActiveAnimation.value, [0, 1], [0, 15]),
+      transform: [
+        {
+          scale: interpolate(
+            isActiveAnimation.value,
+            [0, 1],
+            [1, ACTIVE_TILE_SCALE],
+          ),
+        },
+      ],
+      width: TILE_SIZE,
       height: interpolate(
         isActiveAnimation.value,
         [0, 1],
-        [COLOR_TILE_SIZE * 1.3, COLOR_TILE_SIZE],
+        [TILE_SIZE * 1.3, TILE_SIZE],
       ),
     }),
     [isActiveAnimation],

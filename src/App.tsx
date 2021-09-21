@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {AppState, StyleSheet, View} from 'react-native';
+import {AppState, Dimensions, StyleSheet, View} from 'react-native';
 import {
   Camera,
   CameraProps,
@@ -11,10 +11,14 @@ import {
 import {getColorPalette} from './utils/getColorPalette';
 import {hapticFeedback} from './utils/hapticFeedback';
 import Reanimated, {
+  interpolate,
   runOnJS,
   useAnimatedGestureHandler,
   useAnimatedProps,
+  useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
+  withSpring,
 } from 'react-native-reanimated';
 import ColorTile from './components/ColorTile';
 import {
@@ -29,6 +33,8 @@ Reanimated.addWhitelistedNativeProps({
 
 const DEFAULT_COLOR = '#000000';
 const MAX_FRAME_PROCESSOR_FPS = 5;
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const TRANSLATE_Y_ACTIVE = (SCREEN_WIDTH - SCREEN_WIDTH * 0.9) / 2;
 
 export function App() {
   const [frameProcessorFps, setFrameProcessorFps] = useState(3);
@@ -47,6 +53,43 @@ export function App() {
   const onCameraInitialized = useCallback(() => {
     console.log('Camera initialized!');
   }, []);
+
+  const isActiveAnimation = useDerivedValue(
+    () =>
+      withSpring(isActive.value ? 1 : 0, {
+        mass: 1,
+        damping: 500,
+        stiffness: 800,
+        restDisplacementThreshold: 0.0001,
+      }),
+    [isActive],
+  );
+  const palettesStyle = useAnimatedStyle(
+    () => ({
+      transform: [
+        {
+          scale: interpolate(isActiveAnimation.value, [0, 1], [0.9, 1]),
+        },
+        {
+          translateY: interpolate(
+            isActiveAnimation.value,
+            [0, 1],
+            [-TRANSLATE_Y_ACTIVE, 0],
+          ),
+        },
+      ],
+      padding: interpolate(isActiveAnimation.value, [0, 1], [10, 0]),
+      borderRadius: interpolate(isActiveAnimation.value, [0, 1], [25, 0]),
+    }),
+    [isActiveAnimation],
+  );
+  const colorTileStyle = useAnimatedStyle(
+    () => ({
+      borderRadius: interpolate(isActiveAnimation.value, [0, 1], [15, 0]),
+      margin: interpolate(isActiveAnimation.value, [0, 1], [5, 0]),
+    }),
+    [isActiveAnimation],
+  );
 
   const frameProcessor = useFrameProcessor(
     frame => {
@@ -130,12 +173,28 @@ export function App() {
           }
           animatedProps={cameraAnimatedProps}
         />
-        <View style={styles.palettes}>
-          <ColorTile name="Primary" color={primaryColor} />
-          <ColorTile name="Secondary" color={secondaryColor} />
-          <ColorTile name="Background" color={backgroundColor} />
-          <ColorTile name="Detail" color={detailColor} />
-        </View>
+        <Reanimated.View style={[styles.palettes, palettesStyle]}>
+          <ColorTile
+            name="Primary"
+            color={primaryColor}
+            animatedStyle={colorTileStyle}
+          />
+          <ColorTile
+            name="Secondary"
+            color={secondaryColor}
+            animatedStyle={colorTileStyle}
+          />
+          <ColorTile
+            name="Background"
+            color={backgroundColor}
+            animatedStyle={colorTileStyle}
+          />
+          <ColorTile
+            name="Detail"
+            color={detailColor}
+            animatedStyle={colorTileStyle}
+          />
+        </Reanimated.View>
       </Reanimated.View>
     </TapGestureHandler>
   );
@@ -153,10 +212,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   palettes: {
+    position: 'absolute',
     left: 0,
+    right: 0,
     bottom: 0,
-    height: 100,
     flexDirection: 'row',
-    backgroundColor: 'black',
+    backgroundColor: 'white',
   },
 });

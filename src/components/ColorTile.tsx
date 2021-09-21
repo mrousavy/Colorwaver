@@ -4,17 +4,18 @@ import Reanimated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import AnimateableText from 'react-native-animateable-text';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text, ViewStyle} from 'react-native';
 import {useAnimatedColor} from '../utils/useAnimatedColor';
 
 type ColorTileProps = {
   name: string;
   color: Reanimated.SharedValue<string>;
+  animatedStyle?: ViewStyle;
 };
 
-const ColorTile = ({name, color}: ColorTileProps) => {
+const ColorTile = ({name, color, animatedStyle}: ColorTileProps) => {
   const animatedColor = useAnimatedColor(color);
-  const animatedStyles = useAnimatedStyle(
+  const animatedBackgroundStyle = useAnimatedStyle(
     () => ({
       backgroundColor: animatedColor.value,
     }),
@@ -26,7 +27,8 @@ const ColorTile = ({name, color}: ColorTileProps) => {
   }));
 
   return (
-    <Reanimated.View style={[styles.tile, animatedStyles]}>
+    <Reanimated.View
+      style={[styles.tile, animatedBackgroundStyle, animatedStyle]}>
       <Text style={styles.text}>{name}</Text>
       <AnimateableText
         animatedProps={animatedProps}
@@ -41,6 +43,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 5,
+    aspectRatio: 1 / 1.4,
   },
   text: {
     fontSize: 14,

@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
+    "@babel/preset-typescript": "^7.15.0",
     "@babel/runtime": "^7.15.4",
     "@jamesacarr/eslint-formatter-github-actions": "^0.1.0",
     "@react-native-community/eslint-config": "^3.0.1",

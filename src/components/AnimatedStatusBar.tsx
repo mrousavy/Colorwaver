@@ -7,21 +7,21 @@ import Reanimated, {
 } from 'react-native-reanimated';
 
 interface Props extends Omit<StatusBarProps, 'hidden'> {
-  isVisible: Reanimated.SharedValue<boolean>;
+  isHidden: Reanimated.SharedValue<boolean>;
 }
 
 export function AnimatedStatusBar({
-  isVisible,
+  isHidden: isHiddenAnimatedValue,
   ...props
 }: Props): React.ReactElement {
   const [isHidden, setIsHidden] = useState(false);
 
   useAnimatedReaction(
-    () => isVisible.value,
+    () => isHiddenAnimatedValue.value,
     is => {
-      runOnJS(setIsHidden)(!is);
+      runOnJS(setIsHidden)(is);
     },
-    [isVisible],
+    [isHiddenAnimatedValue],
   );
 
   return <StatusBar {...props} hidden={isHidden} />;

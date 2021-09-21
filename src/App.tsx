@@ -46,7 +46,8 @@ const TRANSLATE_Y_ACTIVE =
 
 export function App() {
   const [frameProcessorFps, setFrameProcessorFps] = useState(3);
-  const isActive = useSharedValue(true);
+  const isPageActive = useSharedValue(true);
+  const isHolding = useSharedValue(false);
 
   const colorAnimationDuration = useMemo(
     () => (1 / frameProcessorFps) * 1000,
@@ -69,13 +70,13 @@ export function App() {
 
   const isActiveAnimation = useDerivedValue(
     () =>
-      withSpring(isActive.value ? 1 : 0, {
+      withSpring(isHolding.value ? 0 : 1, {
         mass: 1,
         damping: 500,
         stiffness: 800,
         restDisplacementThreshold: 0.0001,
       }),
-    [isActive],
+    [isHolding],
   );
   const palettesStyle = useAnimatedStyle(
     () => ({
@@ -134,7 +135,7 @@ export function App() {
   const frameProcessor = useFrameProcessor(
     frame => {
       'worklet';
-      if (!isActive.value) {
+      if (isHolding.value) {
         // handbrake
         return;
       }
@@ -144,22 +145,22 @@ export function App() {
       backgroundColor.value = colors.background;
       detailColor.value = colors.detail;
     },
-    [isActive],
+    [isHolding],
   );
 
   const onTapBegin = useWorkletCallback(() => {
-    isActive.value = false;
+    isHolding.value = true;
     runOnJS(hapticFeedback)('selection');
-  }, [isActive]);
+  }, [isHolding]);
   const onTapEnd = useWorkletCallback(() => {
-    isActive.value = true;
-  }, [isActive]);
+    isHolding.value = false;
+  }, [isHolding]);
 
   const cameraAnimatedProps = useAnimatedProps<CameraProps>(
     () => ({
-      isActive: isActive.value,
+      isActive: !isHolding.value && isPageActive.value,
     }),
-    [isActive],
+    [isHolding, isPageActive],
   );
 
   const onFrameProcessorPerformanceSuggestionAvailable = useCallback(
@@ -175,12 +176,12 @@ export function App() {
 
   useEffect(() => {
     const listener = AppState.addEventListener('change', state => {
-      isActive.value = state === 'active';
+      isPageActive.value = state === 'active';
     });
     return () => {
       listener.remove();
     };
-  }, [isActive]);
+  }, [isPageActive, isHolding]);
 
   if (device == null) {
     return <View style={styles.blackscreen} />;
@@ -192,6 +193,7 @@ export function App() {
     <TapGestureHandler
       onBegan={onTapBegin}
       onEnded={onTapEnd}
+      onFailed={onTapEnd}
       enabled={true}
       minPointers={1}
       maxDurationMs={999999}>
@@ -199,7 +201,7 @@ export function App() {
         <AnimatedStatusBar
           barStyle="light-content"
           animated={true}
-          isVisible={isActive}
+          isHidden={isHolding}
         />
         <ReanimatedCamera
           device={device}

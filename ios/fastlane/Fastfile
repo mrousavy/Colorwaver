@@ -1,0 +1,6 @@
+# Fastlane
+
+lane :release do
+  build_app(scheme: "Colorwaver",
+            workspace: "Colorwaver.xcworkspace")
+end

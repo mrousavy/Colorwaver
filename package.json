@@ -9,7 +9,8 @@
     "ios": "react-native run-ios --device",
     "pods": "cd ios && pod install",
     "start": "react-native start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "release-ios": "cd ios && pod install && bundle install && bundle exec fastlane release"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.2",

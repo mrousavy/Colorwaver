@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {AppState, Dimensions, StyleSheet, View} from 'react-native';
+import {AppState, Dimensions, Platform, StyleSheet, View} from 'react-native';
 import {
   Camera,
   CameraProps,
@@ -24,6 +24,12 @@ import ColorTile from './components/ColorTile';
 import {TapGestureHandler} from 'react-native-gesture-handler';
 import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 import {AnimatedStatusBar} from './components/AnimatedStatusBar';
+import {BlurView} from '@react-native-community/blur';
+
+const IS_IOS = Platform.OS === 'ios';
+const BackgroundView = IS_IOS
+  ? Reanimated.createAnimatedComponent(BlurView)
+  : Reanimated.View;
 
 const ReanimatedCamera = Reanimated.createAnimatedComponent(Camera);
 Reanimated.addWhitelistedNativeProps({
@@ -140,6 +146,9 @@ export function App() {
         return;
       }
       const colors = getColorPalette(frame, 'lowest');
+      if (colors == null) {
+        return;
+      }
       primaryColor.value = colors.primary;
       secondaryColor.value = colors.secondary;
       backgroundColor.value = colors.background;
@@ -216,7 +225,11 @@ export function App() {
           }
           animatedProps={cameraAnimatedProps}
         />
-        <Reanimated.View style={[styles.palettes, palettesStyle]}>
+        <BackgroundView
+          blurAmount={25}
+          blurRadius={25}
+          blurType="material"
+          style={[styles.palettes, palettesStyle]}>
           <ColorTile
             name="Primary"
             color={primaryColor}
@@ -241,7 +254,7 @@ export function App() {
             animationDuration={colorAnimationDuration}
             animatedStyle={colorTileStyle}
           />
-        </Reanimated.View>
+        </BackgroundView>
       </Reanimated.View>
     </TapGestureHandler>
   );
@@ -264,6 +277,6 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: IS_IOS ? 'transparent' : 'white',
   },
 });

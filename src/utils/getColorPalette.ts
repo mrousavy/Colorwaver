@@ -21,13 +21,13 @@ declare global {
   var __getColorPalette: (
     frame: Frame,
     quality: ColorPaletteQuality,
-  ) => Palette;
+  ) => Palette | undefined | null;
 }
 
 export function getColorPalette(
   frame: Frame,
   quality: ColorPaletteQuality = 'highest',
-): Palette {
+): Palette | undefined | null {
   'worklet';
   return __getColorPalette(frame, quality);
 }

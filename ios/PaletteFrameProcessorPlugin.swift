@@ -19,7 +19,7 @@ public class PaletteFrameProcessorPlugin: NSObject, FrameProcessorPluginBase {
 
     let cgImage = context.createCGImage(ciImage, from: ciImage.extent)!
     let image = UIImage(cgImage: cgImage)
-    let colors = image.getColors(.low)!
+    let colors = image.getColors(quality: .low)!
     
     return [
       "primary": colors.primary.hexString,

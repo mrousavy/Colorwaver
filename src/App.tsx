@@ -7,7 +7,8 @@ import {
   useCameraDevices,
   useFrameProcessor,
 } from 'react-native-vision-camera';
-import {getColorPalette} from './getColorPalette';
+import {getColorPalette} from './utils/getColorPalette';
+import {hapticFeedback} from './utils/hapticFeedback';
 import Reanimated, {
   runOnJS,
   useAnimatedGestureHandler,
@@ -19,15 +20,10 @@ import {
   TapGestureHandler,
   TapGestureHandlerGestureEvent,
 } from 'react-native-gesture-handler';
-import HapticFeedback from 'react-native-haptic-feedback';
 
 const ReanimatedCamera = Reanimated.createAnimatedComponent(Camera);
 
 const DEFAULT_COLOR = '#000000';
-
-function hapticFeedback() {
-  HapticFeedback.trigger('impactLight');
-}
 
 export function App() {
   const isActive = useSharedValue(true);

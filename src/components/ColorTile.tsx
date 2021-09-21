@@ -1,11 +1,11 @@
+import React from 'react';
 import Reanimated, {
   useAnimatedProps,
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import AnimateableText from 'react-native-animateable-text';
 import {StyleSheet, Text} from 'react-native';
-import React from 'react';
-import {useAnimatedColor} from '../useAnimatedColor';
+import {useAnimatedColor} from '../utils/useAnimatedColor';
 
 type ColorTileProps = {
   name: string;

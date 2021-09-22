@@ -25,6 +25,12 @@ import {TapGestureHandler} from 'react-native-gesture-handler';
 import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 import {AnimatedStatusBar} from './components/AnimatedStatusBar';
 import {BlurView} from '@react-native-community/blur';
+import {
+  getBestVideoStabilizationMode,
+  logDevice,
+  logFormat,
+  sortFormats,
+} from './utils/sortFormats';
 
 const IS_IOS = Platform.OS === 'ios';
 const BackgroundView = IS_IOS
@@ -73,6 +79,20 @@ export function App() {
   const onCameraInitialized = useCallback(() => {
     console.log('Camera initialized!');
   }, []);
+
+  const format = useMemo(() => {
+    if (device == null) {
+      return undefined;
+    }
+    const formats = sortFormats(device.formats);
+    return formats[0];
+  }, [device]);
+  const videoStabilizationMode = useMemo(() => {
+    if (format == null) {
+      return undefined;
+    }
+    return getBestVideoStabilizationMode(format.videoStabilizationModes);
+  }, [format]);
 
   const isActiveAnimation = useDerivedValue(
     () =>
@@ -192,11 +212,14 @@ export function App() {
     };
   }, [isPageActive, isHolding]);
 
+  useEffect(() => {
+    logDevice(device);
+    logFormat(format);
+  }, [device, format]);
+
   if (device == null) {
     return <View style={styles.blackscreen} />;
   }
-
-  console.log(`Camera Device: ${device.name}`);
 
   return (
     <TapGestureHandler
@@ -216,6 +239,8 @@ export function App() {
           device={device}
           isActive={true} // <-- overriden by animatedProps
           frameProcessor={frameProcessor}
+          format={format}
+          videoStabilizationMode={videoStabilizationMode}
           style={styles.camera}
           onError={onCameraError}
           onInitialized={onCameraInitialized}

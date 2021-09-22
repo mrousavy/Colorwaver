@@ -1,3 +1,4 @@
+import {Dimensions, PixelRatio} from 'react-native';
 import type {
   CameraDevice,
   CameraDeviceFormat,
@@ -40,6 +41,8 @@ function getVideoStabilizationModeScore(
   }
 }
 
+const SCREEN_HEIGHT = Dimensions.get('window').height * PixelRatio.get();
+
 /**
  * Custom Format sorter function. Copies the array instead of sorting in-place.
  *
@@ -73,15 +76,15 @@ export function sortFormats(
       leftScore += 1;
     }
 
-    const leftPixels = left.videoWidth * left.videoHeight;
-    const rightPixels = right.videoWidth * right.videoHeight;
-    if (rightPixels > leftPixels) {
+    const leftPixelsDiff = SCREEN_HEIGHT - left.videoWidth;
+    const rightPixelsDiff = SCREEN_HEIGHT - right.videoWidth;
+    if (rightPixelsDiff < leftPixelsDiff) {
       rightScore += 1;
-    } else if (leftPixels > rightPixels) {
-      rightScore += 1;
+    } else if (leftPixelsDiff < rightPixelsDiff) {
+      leftScore += 1;
     }
 
-    return leftScore - rightScore;
+    return rightScore - leftScore;
   });
   return formats;
 }
@@ -105,12 +108,12 @@ export function logFormat(format: CameraDeviceFormat | undefined) {
     const minFpsSorted = format.frameRateRanges.sort(
       (left, right) => left.minFrameRate - right.minFrameRate,
     );
-    const minFps = minFpsSorted[0];
+    const minFps = minFpsSorted[0]?.minFrameRate ?? 0;
     const maxFpsSorted = format.frameRateRanges.sort(
       (left, right) => left.maxFrameRate - right.maxFrameRate,
     );
-    const maxFps = maxFpsSorted[maxFpsSorted.length - 1];
-    const colorSpaces = format.colorSpaces.join(', ');
+    const maxFps = maxFpsSorted[maxFpsSorted.length - 1]?.maxFrameRate ?? 0;
+    const colorSpaces = `[${format.colorSpaces.join(', ')}]`;
 
     console.log(
       `Device Format: ${resolution} (` +

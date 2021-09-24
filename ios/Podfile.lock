@@ -280,7 +280,7 @@ PODS:
     - React-Core
   - RNReactNativeHapticFeedback (1.11.0):
     - React-Core
-  - RNReanimated (2.3.0-alpha.3):
+  - RNReanimated (2.3.0-beta.1):
     - DoubleConversion
     - FBLazyVector
     - FBReactNativeSpec
@@ -315,7 +315,7 @@ PODS:
   - RNStaticSafeAreaInsets (2.1.1):
     - React
   - UIImageColors (2.1.0)
-  - VisionCamera (2.8.0):
+  - VisionCamera (2.8.2):
     - React
     - React-callinvoker
     - React-Core
@@ -480,11 +480,11 @@ SPEC CHECKSUMS:
   ReactCommon: eafed38eec7b591c31751bfa7494801618460459
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNReactNativeHapticFeedback: 653a8c126a0f5e88ce15ffe280b3ff37e1fbb285
-  RNReanimated: 48e578538b2fad573d3d5ce2e80ad375e1534d87
+  RNReanimated: 13f91e6ffd60b3f50c579804958c7610de6ba9c9
   RNScreens: 0591543e343c7444ea1756b6265d81a4295922c9
   RNStaticSafeAreaInsets: 6103cf09647fa427186d30f67b0f5163c1ae8252
   UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
-  VisionCamera: c760f5e5207ca71962e46a7e70eef5d8d8e86ad7
+  VisionCamera: 545dd12ecea0e8bf87c2653062a8389a7b67a24c
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
 
 PODFILE CHECKSUM: 3fda28f39f80baa950e3d286f6416364b80a4e21

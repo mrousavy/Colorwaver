@@ -196,7 +196,7 @@ export function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       tick(c => !c);
-    });
+    }, 1000);
     return () => clearInterval(interval);
   }, []);
 

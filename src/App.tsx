@@ -52,6 +52,7 @@ const TRANSLATE_Y_ACTIVE =
 
 export function App() {
   const [frameProcessorFps, setFrameProcessorFps] = useState(3);
+  const [, tick] = useState(false);
   const isPageActive = useSharedValue(true);
   const isHolding = useSharedValue(false);
 
@@ -191,6 +192,13 @@ export function App() {
       listener.remove();
     };
   }, [isPageActive, isHolding]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      tick(c => !c);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   if (device == null) {
     return <View style={styles.blackscreen} />;

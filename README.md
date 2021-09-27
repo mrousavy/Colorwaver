@@ -96,3 +96,12 @@ This is a bare React Native project, created with [create-react-native-app](http
 ---
 
 * 📄 `babel.config.js`: Adds the native frame processor plugin `getColorPalette` (called `__getColorPalette`) to Reanimated's `global` list.
+
+
+## Credits
+
+* [**@Simek**](https://github.com/Simek) for the original idea
+* [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated) for allowing JS code to be dispatched to another Runtime (Worklets)
+* [react-native-vision-camera](https://github.com/mrousavy/react-native-vision-camera) for allowing you to run JS code on a realtime feed of Camera Frames (Frame Processors)
+* The [Palette API from AndroidX](https://developer.android.com/reference/androidx/palette/graphics/Palette) for getting the Color Palette on Android
+* [`UIImageColors`](https://github.com/jathu/UIImageColors) for getting the Color Palette on iOS

@@ -105,3 +105,4 @@ This is a bare React Native project, created with [create-react-native-app](http
 * [react-native-vision-camera](https://github.com/mrousavy/react-native-vision-camera) for allowing you to run JS code on a realtime feed of Camera Frames (Frame Processors)
 * The [Palette API from AndroidX](https://developer.android.com/reference/androidx/palette/graphics/Palette) for getting the Color Palette on Android
 * [`UIImageColors`](https://github.com/jathu/UIImageColors) for getting the Color Palette on iOS
+* **You guys**, for downloading, giving 5 stars, and pushing Colorwaver up in the Charts.

@@ -338,7 +338,7 @@ PODS:
   - RNStaticSafeAreaInsets (2.1.1):
     - React
   - UIImageColors (2.1.0)
-  - VisionCamera (2.9.1):
+  - VisionCamera (2.9.2):
     - React
     - React-callinvoker
     - React-Core
@@ -523,7 +523,7 @@ SPEC CHECKSUMS:
   RNScreens: 6e1ea5787989f92b0671049b808aef64fa1ef98c
   RNStaticSafeAreaInsets: 6103cf09647fa427186d30f67b0f5163c1ae8252
   UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
-  VisionCamera: cc6afc1f01b6f1294ab7e024e18f9543a47f8b71
+  VisionCamera: 1461bc04f1601abe2d93ebeec322113297c635b4
   Yoga: c11abbf5809216c91fcd62f5571078b83d9b6720
 
 PODFILE CHECKSUM: 458e7bb98ddc1934d51bdd6aa99eaea92c6316d5

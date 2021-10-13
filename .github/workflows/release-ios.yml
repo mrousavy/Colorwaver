@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'release-ios.yml'
+      - 'ios/**'
+      - 'img/**'
+      - 'patches/**'
+      - 'src/**'
+      - 'yarn.lock'
 
 jobs:
   release:

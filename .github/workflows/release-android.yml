@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'release-android.yml'
+      - 'android/**'
+      - 'img/**'
+      - 'patches/**'
+      - 'src/**'
+      - 'yarn.lock'
 
 jobs:
   release:

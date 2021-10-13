@@ -66,7 +66,7 @@ jobs:
         env:
           MATCH_KEYCHAIN_NAME: 'keychain_temp'
           MATCH_KEYCHAIN_PASSWORD: '123'
-          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_PASSWORD: ${{ secrets.FASTLANE_MATCH_PASSWORD }}
 
 
       - name: Run fastlane

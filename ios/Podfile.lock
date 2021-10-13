@@ -209,7 +209,7 @@ PODS:
   - React-jsinspector (0.66.0)
   - React-logger (0.66.0):
     - glog
-  - react-native-animateable-text (0.7.0):
+  - react-native-animateable-text (0.8.0):
     - React
   - react-native-blur (0.8.0):
     - React
@@ -473,7 +473,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 6a05173dc0142abc582bd4edd2d23146b8cc218a
   React-jsinspector: be95ad424ba9f7b817aff22732eb9b1b810a000a
   React-logger: 9a9cd87d4ea681ae929b32ef580638ff1b50fb24
-  react-native-animateable-text: d1927f547805ee31b7a1e7d94ad65f0af8efe580
+  react-native-animateable-text: e33156b6f9cdd99c8845e552fa72d933539b9ec0
   react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   React-perflogger: 1f554c2b684e2f484f9edcdfdaeedab039fbaca8

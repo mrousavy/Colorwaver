@@ -18,29 +18,29 @@
   },
   "dependencies": {
     "@react-native-community/blur": "^3.6.0",
-    "@react-navigation/native": "^6.0.2",
-    "@react-navigation/native-stack": "^6.1.0",
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.4",
     "react": "^17.0.2",
     "react-native": "^0.66.0",
-    "react-native-animateable-text": "^0.7.0",
+    "react-native-animateable-text": "^0.8.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-haptic-feedback": "^1.11.0",
-    "react-native-reanimated": "^2.3.0-beta.1",
+    "react-native-reanimated": "^2.3.0-beta.2",
     "react-native-safe-area-context": "^3.3.2",
-    "react-native-screens": "^3.7.2",
+    "react-native-screens": "^3.8.0",
     "react-native-static-safe-area-insets": "^2.1.1",
-    "react-native-vision-camera": "^2.8.2"
+    "react-native-vision-camera": "^2.9.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.5",
+    "@babel/core": "^7.15.8",
     "@babel/preset-typescript": "^7.15.0",
     "@babel/runtime": "^7.15.4",
     "@jamesacarr/eslint-formatter-github-actions": "^0.1.0",
     "@react-native-community/eslint-config": "^3.0.1",
-    "@types/react": "^17.0.24",
-    "@types/react-native": "^0.65.1",
-    "eslint": "7.32.0",
+    "@types/react": "^17.0.29",
+    "@types/react-native": "^0.65.5",
+    "eslint": "^7.32.0",
     "metro-react-native-babel-preset": "^0.66.2",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.4"
   }
 }

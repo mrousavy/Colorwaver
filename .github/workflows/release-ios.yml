@@ -68,5 +68,11 @@ jobs:
           MATCH_KEYCHAIN_PASSWORD: '123'
           MATCH_PASSWORD: ${{ secrets.FASTLANE_MATCH_PASSWORD }}
 
-      - name: Run fastlane
+      - name: Run fastlane (AppStore)
+        if: |
+          contains(github.event.head_commit.message, 'new-release')
+        run: bundle exec fastlane release
+      - name: Run fastlane (TestFlight)
+        if: |
+          !contains(github.event.head_commit.message, 'new-release')
         run: bundle exec fastlane release

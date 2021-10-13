@@ -21,7 +21,7 @@
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.1.0",
     "react": "^17.0.2",
-    "react-native": "^0.65.1",
+    "react-native": "^0.66.0",
     "react-native-animateable-text": "^0.7.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-haptic-feedback": "^1.11.0",
@@ -40,8 +40,7 @@
     "@types/react": "^17.0.24",
     "@types/react-native": "^0.65.1",
     "eslint": "7.32.0",
-    "metro-react-native-babel-preset": "^0.66.0",
-    "react-native-codegen": "^0.0.7",
+    "metro-react-native-babel-preset": "^0.66.2",
     "typescript": "^4.4.3"
   }
 }

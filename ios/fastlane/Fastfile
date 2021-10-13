@@ -1,5 +1,23 @@
 # Fastlane
 
+lane :beta do
+  sync_code_signing(type: "testflight",
+                    git_url: "https://github.com/Colorwaver/certificates")
+
+  disable_automatic_code_signing(path: "Colorwaver.xcodeproj")
+  build_app(scheme: "Colorwaver",
+            workspace: "Colorwaver.xcworkspace")
+  enable_automatic_code_signing(path: "Colorwaver.xcodeproj")
+
+  upload_to_testflight(
+    demo_account_required: false,
+    distribute_external: true,
+    groups: "Testers",
+    notify_external_testers: true,
+    changelog: changelog_from_git_commits(commits_count: 100)
+  )
+end
+
 lane :release do
   sync_code_signing(type: "appstore",
                     git_url: "https://github.com/Colorwaver/certificates")

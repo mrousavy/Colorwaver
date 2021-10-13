@@ -40,5 +40,11 @@ jobs:
           bundler-cache: true
           working-directory: android
 
-      - name: Run fastlane
-        run: bundle exec fastlane deploy
+      - name: Run fastlane (Google Play)
+        if: |
+          contains(github.event.head_commit.message, 'new-release')
+        run: bundle exec fastlane release
+      - name: Run fastlane (Google Play Internal)
+        if: |
+          !contains(github.event.head_commit.message, 'new-release')
+        run: bundle exec fastlane beta

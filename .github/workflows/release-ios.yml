@@ -75,4 +75,4 @@ jobs:
       - name: Run fastlane (TestFlight)
         if: |
           !contains(github.event.head_commit.message, 'new-release')
-        run: bundle exec fastlane release
+        run: bundle exec fastlane beta

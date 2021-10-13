@@ -15,12 +15,11 @@ Install _fastlane_ using
 or alternatively using `brew install fastlane`
 
 # Available Actions
-## Android
-### android deploy
+### release
 ```
-fastlane android deploy
+fastlane release
 ```
-Deploy a new version to the Google Play
+
 
 ----
 

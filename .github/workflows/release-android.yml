@@ -40,6 +40,13 @@ jobs:
           bundler-cache: true
           working-directory: android
 
+      - name: Create Google Service Account JSON
+        run: |
+            echo $GOOGLE_PLAY_SERVICE_ACCOUNT_JSON >> /tmp/secret.json
+        shell: bash
+        env:
+          DEV_ENV_FILE : ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+
       - name: Run fastlane (Google Play)
         if: |
           contains(github.event.head_commit.message, 'new-release')

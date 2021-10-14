@@ -1,5 +1,11 @@
 # Fastlane
 
+lane :bump do
+  increment_version_code(
+    gradle_file_path: "app/build.gradle",
+  )
+end
+
 lane :beta do
   gradle(task: "clean assembleRelease")
   upload_to_play_store(track: 'beta')

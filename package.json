@@ -12,8 +12,8 @@
     "start": "react-native start",
     "lint": "eslint .",
     "typescript": "tsc --noEmit",
-    "release-ios": "cd ios && pod install && bundle install && bundle exec fastlane release",
-    "release-android": "cd android && bundle install && bundle exec fastlane deploy",
+    "release-ios": "scripts/release-ios.sh",
+    "release-android": "scripts/release-android.sh",
     "postinstall": "patch-package"
   },
   "dependencies": {

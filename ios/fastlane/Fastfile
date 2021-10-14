@@ -1,5 +1,9 @@
 # Fastlane
 
+lane :bump do
+  increment_version_number
+end
+
 lane :beta do
   sync_code_signing(type: "testflight",
                     git_url: "https://github.com/Colorwaver/certificates")

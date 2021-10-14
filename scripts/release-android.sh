@@ -1,12 +1,6 @@
 #!/bin/bash
 
 trap "exit" INT
-for ((i=0; i < $srccount; i++)); do
-    echo -e "\"${src[$i]}\" will be synchronized to \"${dest[$i]}\""
-    echo -e $'Press any key to continue or Ctrl+C to exit...\n'
-    read -rs -n1
-    rsync ${opt1} ${opt2} ${opt3} ${src[$i]} ${dest[$i]}
-done
 
 cd "$(dirname "$0")"
 cd ..

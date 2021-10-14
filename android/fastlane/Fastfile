@@ -7,11 +7,11 @@ lane :bump do
 end
 
 lane :beta do
-  gradle(task: "clean assembleRelease")
+  gradle(task: "clean bundleRelease")
   upload_to_play_store(track: 'beta')
 end
 
 lane :release do
-  gradle(task: "clean assembleRelease")
+  gradle(task: "clean bundleRelease")
   upload_to_play_store
 end

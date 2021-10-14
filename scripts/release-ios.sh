@@ -1,5 +1,19 @@
 #!/bin/bash
 
+onError() {
+  local parent_lineno="$1"
+  local message="$2"
+  local code="${3:-1}"
+  if [[ -n "$message" ]] ; then
+    echo "Error on or near line ${parent_lineno}: ${message}; exiting with status ${code}"
+  else
+    echo "Error on or near line ${parent_lineno}; exiting with status ${code}"
+  fi
+
+  git checkout -- app/build.gradle
+  exit "${code}"
+}
+trap 'error ${LINENO}' ERR
 trap "exit" INT
 
 cd "$(dirname "$0")"
@@ -25,17 +39,17 @@ fi
 cd ios
 
 # Credentials
-bundle exec fastlane match adhoc --readonly
+bundle exec fastlane match adhoc --readonly --git_url=https://github.com/Colorwaver/certificates
 
 # Increment version
 bundle exec fastlane bump
 git add ios/Colorwaver/Info.plist
 
+# Increment version
+bundle exec fastlane bump
+git add app/build.gradle
+
 set -e
-if bundle exec fastlane release then
-  git commit -m "Bump version for iOS Release"
-  git push
-else
-  # Update failed, revert version bump
-  git checkout -- ios/Colorwaver/Info.plist
-fi
+bundle exec fastlane release
+git commit -m "Bump version for Android Release"
+git push

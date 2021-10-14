@@ -15,6 +15,16 @@ Install _fastlane_ using
 or alternatively using `brew install fastlane`
 
 # Available Actions
+### bump
+```
+fastlane bump
+```
+
+### beta
+```
+fastlane beta
+```
+
 ### release
 ```
 fastlane release

@@ -63,7 +63,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
       - name: Install profiles
-        run: bundle exec fastlane match adhoc --readonly && bundle exec fastlane match development --readonly
+        run: bundle exec fastlane match adhoc --readonly
         env:
           MATCH_KEYCHAIN_NAME: 'keychain_temp'
           MATCH_KEYCHAIN_PASSWORD: '123'

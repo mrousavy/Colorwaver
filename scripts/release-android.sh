@@ -14,7 +14,7 @@ fi
 
 if [ -z "$(git status --porcelain)" ]; then
   # Working directory clean
-  ;
+  echo '';
 else
   # Uncommitted changes
   echo 'Working directory not clean! Commit/Revert changes and try again.';

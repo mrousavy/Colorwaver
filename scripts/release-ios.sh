@@ -10,7 +10,7 @@ onError() {
     echo "Error on or near line ${parent_lineno}; exiting with status ${code}"
   fi
 
-  git checkout -- app/build.gradle
+  git checkout -- Colorwaver/Info.plist
   exit "${code}"
 }
 trap 'error ${LINENO}' ERR
@@ -43,11 +43,7 @@ bundle exec fastlane match appstore --readonly --git_url=https://github.com/Colo
 
 # Increment version
 bundle exec fastlane bump
-git add ios/Colorwaver/Info.plist
-
-# Increment version
-bundle exec fastlane bump
-git add app/build.gradle
+git add Colorwaver/Info.plist
 
 set -e
 bundle exec fastlane release

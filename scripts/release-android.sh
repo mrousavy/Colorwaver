@@ -21,6 +21,10 @@ fi
 
 cd android
 
+# Credentials
+rm /tmp/secret.json
+cp ~/Documents/Backups/Colorwaver/pc-api-5164956947579493759-850-8f6a97d64e71.json /tmp/secret.json
+
 # Increment version
 bundle exec fastlane bump
 git add app/build.gradle

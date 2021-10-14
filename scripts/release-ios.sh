@@ -21,6 +21,9 @@ fi
 
 cd ios
 
+# Credentials
+bundle exec fastlane match adhoc --readonly
+
 # Increment version
 bundle exec fastlane bump
 git add ios/Colorwaver/Info.plist

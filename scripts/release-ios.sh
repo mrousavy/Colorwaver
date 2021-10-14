@@ -40,6 +40,7 @@ cd ios
 
 # Credentials
 bundle exec fastlane match adhoc --readonly --git_url=https://github.com/Colorwaver/certificates
+bundle exec fastlane match development --readonly --git_url=https://github.com/Colorwaver/certificates
 
 # Increment version
 bundle exec fastlane bump

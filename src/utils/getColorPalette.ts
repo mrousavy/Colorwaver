@@ -1,5 +1,4 @@
-/* globals __getColorPalette */
-import type {Frame} from 'react-native-vision-camera';
+import {Frame, FrameProcessorPlugins} from 'react-native-vision-camera';
 
 export interface Palette {
   primary: string;
@@ -16,18 +15,10 @@ export interface Palette {
  */
 export type ColorPaletteQuality = 'lowest' | 'low' | 'high' | 'highest';
 
-// Frame Processor Plugin name
-declare global {
-  var __getColorPalette: (
-    frame: Frame,
-    quality: ColorPaletteQuality,
-  ) => Palette | undefined | null;
-}
-
 export function getColorPalette(
   frame: Frame,
   quality: ColorPaletteQuality = 'highest',
 ): Palette | undefined | null {
   'worklet';
-  return __getColorPalette(frame, quality);
+  return FrameProcessorPlugins.getColorPalette(frame, quality);
 }

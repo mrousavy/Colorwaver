@@ -20,6 +20,7 @@
     "@react-native-community/blur": "^3.6.0",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.4",
+    "@shopify/react-native-skia": "^0.1.175",
     "react": "^17.0.2",
     "react-native": "^0.66.0",
     "react-native-animateable-text": "^0.8.0",
@@ -29,7 +30,8 @@
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.8.0",
     "react-native-static-safe-area-insets": "^2.1.1",
-    "react-native-vision-camera": "^2.9.3"
+    "react-native-vision-camera": "^3.0.0-rc.2",
+    "react-native-worklets": "https://github.com/chrfalch/react-native-worklets#d62d76c"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",

@@ -1,0 +1,77 @@
+name: release-apk
+on:
+  workflow_dispatch:
+  # push:
+jobs:
+  android-build:
+    name: Android Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository 
+        uses: actions/checkout@v2
+
+      - name: Set up our JDK environment 
+        uses: actions/setup-java@v1.4.3
+        with:
+          java-version: 1.8
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Restore node_modules from cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Cache Gradle Wrapper
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+
+      - name: Restore Gradle cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - name: Make Gradlew Executable
+        run: chmod +x ./android/gradlew
+
+      - name: Generate Offline Bundle
+        run: yarn react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+
+      - name: Generate Release APK
+        run: |
+          cd android && ./gradlew assembleRelease --build-cache || true
+
+      - name: Delete Extra Drawable Folders
+        run: |
+          rm -rf ./android/app/src/main/res/drawable-*
+
+      - name: Remove Node Modules
+        run: rm -rf node_modules
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Generate Release APK
+        run: |
+          cd android && ./gradlew assembleRelease --build-cache
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-release.apk
+          path: android/app/build/outputs/apk/release/app-arm64-v8a-release.apk

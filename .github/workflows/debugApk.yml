@@ -54,9 +54,6 @@ jobs:
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
 
-      - name: Generate Offline Bundle
-        run: yarn react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
-
       - name: Generate Debug APK
         run: |
           cd android && ./gradlew assembleDebug --build-cache && cd ..

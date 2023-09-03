@@ -38,6 +38,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Run Gradle Build for android/
+        run: cd android && ./gradlew clean && cd ..
         run: cd android && ./gradlew assembleDebug --build-cache && cd ..
 
       - name: Upload Artifact

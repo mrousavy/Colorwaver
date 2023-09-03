@@ -37,8 +37,11 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - name: Run Gradle Build for android/
+
+      - name: Clean Gradle for android/
         run: cd android && ./gradlew clean && cd ..
+
+      - name: Run Gradle Build for android/
         run: cd android && ./gradlew assembleDebug --build-cache && cd ..
 
       - name: Upload Artifact

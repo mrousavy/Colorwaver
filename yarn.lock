@@ -4518,10 +4518,12 @@ react-native-static-safe-area-insets@^2.1.1:
   resolved "https://registry.yarnpkg.com/react-native-static-safe-area-insets/-/react-native-static-safe-area-insets-2.1.1.tgz#394a3510c7029288895bbaccf1dadf4fa46c4b88"
   integrity sha512-NUSRNZp+0IJOuLeoHoU4kw/cY9g7ozUo2ApCbJAiPyYbkbv49S8gdAcZRkeR0nqwzFDA07sCZCbPI03iEV0RTQ==
 
-react-native-vision-camera@^2.9.3:
-  version "2.9.3"
-  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-2.9.3.tgz#4147362aeeab8c3d033ae01953c515ad01be7e94"
-  integrity sha512-/lHx7W0fTO25gXGeEoOadQQ/7pn8LGtKFWMAwz8Wg6IZO5mf3h5WTxX3aoJeLXUgr9ltHkBbNWYl5G4GE43r8A==
+react-native-vision-camera@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-3.0.0.tgz#0e8412e9e936dd30d4229a5fa91a2f3f2b02a388"
+  integrity sha512-pRevZMgusmj8ZcZ6RQRoPLsBoGAKyl+o6bGD248YGvdRmeTEJmW5miNv7+Fby/mcALOEM+O4kK1ZhWMAdOJfrg==
+  dependencies:
+    string-hash-64 "^1.0.3"
 
 react-native@^0.66.0:
   version "0.66.0"

@@ -4519,9 +4519,9 @@ react-native-static-safe-area-insets@^2.1.1:
   integrity sha512-NUSRNZp+0IJOuLeoHoU4kw/cY9g7ozUo2ApCbJAiPyYbkbv49S8gdAcZRkeR0nqwzFDA07sCZCbPI03iEV0RTQ==
 
 react-native-vision-camera@^2.9.3:
-  version "2.9.3"
-  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-2.9.3.tgz#4147362aeeab8c3d033ae01953c515ad01be7e94"
-  integrity sha512-/lHx7W0fTO25gXGeEoOadQQ/7pn8LGtKFWMAwz8Wg6IZO5mf3h5WTxX3aoJeLXUgr9ltHkBbNWYl5G4GE43r8A==
+  version "2.15.6"
+  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-2.15.6.tgz#50fe9b47117a257f2c8bf7c33994fdadb897d091"
+  integrity sha512-TEdriQ2SQAhF7byw7iDaOh8cJm/IECOUofBhcdswtAK9LSqCkVEIhX3pna2L3Obt6evc8zaFnYCVqhvC3UtKRg==
 
 react-native@^0.66.0:
   version "0.66.0"

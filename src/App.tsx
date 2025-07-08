@@ -17,7 +17,6 @@ import Reanimated, {
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
-  useWorkletCallback,
   withSpring,
 } from 'react-native-reanimated';
 import ColorTile from './components/ColorTile';
@@ -157,11 +156,13 @@ export function App() {
     [isHolding],
   );
 
-  const onTapBegin = useWorkletCallback(() => {
+  const onTapBegin = useCallback(() => {
+    'worklet';
     isHolding.value = true;
     runOnJS(hapticFeedback)('selection');
   }, [isHolding]);
-  const onTapEnd = useWorkletCallback(() => {
+  const onTapEnd = useCallback(() => {
+    'worklet';
     isHolding.value = false;
   }, [isHolding]);
 
